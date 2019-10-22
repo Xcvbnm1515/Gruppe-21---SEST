@@ -22,9 +22,11 @@ public class Inventory {
     }
     
     public void printInventory() {
+        System.out.print("Du bærer: ");
         for (int i = 0; i < inventory.size(); i++) {
-            System.out.println(inventory.get(i).getName());
+            System.out.print((i==0 ? "" : ", ") + inventory.get(i).getName());
         }
+        System.out.println(".");
     }
     
 }
