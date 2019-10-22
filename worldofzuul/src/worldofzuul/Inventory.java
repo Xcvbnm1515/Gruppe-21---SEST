@@ -2,8 +2,9 @@ package worldofzuul;
 
 import java.util.ArrayList;
 
-public class Inventory {
+public class Inventory  {
     private ArrayList<Garbage> inventory;
+    
     
     public Inventory() {
         this.inventory = new ArrayList<Garbage>();
@@ -17,8 +18,10 @@ public class Inventory {
         }
     }
     
-    public void dropGarbage(Garbage garbage) {
-        inventory.remove(garbage);
+    public void dropGarbage(ArrayList<Garbage> j , int i) {
+        j.add(inventory.get(i));
+        inventory.remove(i);
+        
     }
     
     public void printInventory() {

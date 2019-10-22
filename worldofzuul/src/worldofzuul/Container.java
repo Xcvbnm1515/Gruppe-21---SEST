@@ -4,11 +4,17 @@ import java.util.ArrayList;
 
 public class Container {
 
-    private ArrayList<Garbage> container = new ArrayList<Garbage>();
+    private ArrayList<Garbage> container;
     private String containerName;
     private int typeContainer;
 
+    public Container() {
+        this.container = new ArrayList<Garbage>();
+    }
+    
+
     public Container(String containerName, int typeContainer) {
+        this.container = new ArrayList<Garbage>();
         this.containerName = containerName;
         this.typeContainer = typeContainer;
     }
@@ -40,5 +46,20 @@ public class Container {
     public String getContainerAdmin() {
         return "Container: " + containerName + ". Type: " + typeOfContainer(typeContainer);
     }
+    
+    public ArrayList getContainer()
+    {
+        return container; 
+    }
+    
+     public void printCon() {
+        System.out.print("Container indeholder : ");
+        for (int i = 0; i < container.size(); i++) {
+            System.out.print((i==0 ? "" : ", ") + container.get(i).getName());
+        }
+        System.out.println(".");
+    }
+         
+           
 
 }
