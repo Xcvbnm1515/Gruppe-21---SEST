@@ -47,8 +47,12 @@ public class Garbage {
         return typeOfGarbage;
     }
 
-    @Override
-    public String toString() {
+    public String getName() {
+        return name;
+    }
+    
+    public String getNameAdmin() {
         return "Garbage item: " + name + ". Type: " + typeOfGarbage(typeNum)+ ". Points: " + points;
     }
+    
 }
