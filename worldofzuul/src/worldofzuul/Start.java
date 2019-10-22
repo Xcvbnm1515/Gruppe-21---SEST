@@ -12,6 +12,10 @@ public class Start {
         Garbage garbage2 = new Garbage("Dåse",2,5);
         Garbage garbage3 = new Garbage("Skraldespand",2,26);
         
+        Container con1 = new Container("Plastik Container",1);
+        System.out.println(con1.getTypeContainerAdmin());
+        
+        
         inventory.pickUpGarbage(garbage2);
         inventory.pickUpGarbage(garbage1);
         inventory.printInventory();

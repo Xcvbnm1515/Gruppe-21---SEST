@@ -30,9 +30,16 @@ public class Garbage {
         return correctFact;
     }
      */
-    
+    public void setTypeNum(int typeNum) {
+        this.typeNum = typeNum;
+    }
+
+    public int getTypeNum() {
+        return typeNum;
+    }
+
     public String typeOfGarbage(int type) {
-        String typeOfGarbage = ""; 
+        String typeOfGarbage = "";
         switch (typeNum) {
             case 1:
                 typeOfGarbage = "Plastik";
@@ -50,9 +57,9 @@ public class Garbage {
     public String getName() {
         return name;
     }
-    
+
     public String getNameAdmin() {
-        return "Garbage item: " + name + ". Type: " + typeOfGarbage(typeNum)+ ". Points: " + points;
+        return "Garbage item: " + name + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
     }
-    
+
 }
