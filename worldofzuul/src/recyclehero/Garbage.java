@@ -1,4 +1,4 @@
-package worldofzuul;
+package recyclehero;
 
 public class Garbage {
 
@@ -14,7 +14,7 @@ public class Garbage {
         this.points = points;
     }
 
-    public void setPoints(int points) {
+   /* public void setPoints(int points) {
         this.points = points;
     }
 
@@ -22,7 +22,7 @@ public class Garbage {
         return points;
     }
 
-    /*public void setFact(String correctFact) {
+    public void setFact(String correctFact) {
         this.correctFact = correctFact;
     }
 
@@ -47,7 +47,7 @@ public class Garbage {
             case 2:
                 typeOfGarbage = "Metal";
                 break;
-            default:
+            default: // control. if none of the other numbers matches it goes "ukendt" 
                 typeOfGarbage = "Ukendt";
 
         }

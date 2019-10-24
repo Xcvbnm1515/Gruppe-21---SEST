@@ -1,5 +1,9 @@
 package worldofzuul;
 
+import recyclehero.Inventory;
+import recyclehero.Garbage;
+import recyclehero.Container;
+
 public class Start {
 
     // Wahid
