@@ -10,6 +10,11 @@ public class Inventory {
     public Inventory() {
         this.inventory = new ArrayList<Garbage>();
     }
+    
+    public ArrayList<Garbage> getInventory()
+    {
+        return this.inventory;
+    }
 
     public void pickUpGarbage(Garbage garbage) {
         if (inventory.size() < 2) {
@@ -19,8 +24,8 @@ public class Inventory {
         }
     }
 
-    public void dropGarbage(ArrayList<Garbage> garbage, int index) {
-        garbage.add(inventory.get(index));
+    public void dropGarbage(ArrayList<Garbage> container, int index) {
+        container.add(inventory.get(index));
         inventory.remove(index);
     }
 
@@ -36,5 +41,7 @@ public class Inventory {
             System.out.print(".\n");
         }
     }
+    
+    
 
 }

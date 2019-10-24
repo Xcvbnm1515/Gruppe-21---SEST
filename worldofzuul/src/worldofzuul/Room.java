@@ -2,7 +2,7 @@ package worldofzuul;
 
 import java.util.Set;
 import java.util.HashMap;
-
+import recyclehero.Container;
 
 public class Room {
 
@@ -23,11 +23,11 @@ public class Room {
     }
 
     public String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
+        return "Du er " + description + ".\n" + getExitString();
     }
 
     private String getExitString() {
-        String returnString = "Exits:";
+        String returnString = "Retninger:";
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
