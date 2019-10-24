@@ -19,9 +19,9 @@ public class Inventory {
         }
     }
 
-    public void dropGarbage(ArrayList<Garbage> j, int i) {
-        j.add(inventory.get(i));
-        inventory.remove(i);
+    public void dropGarbage(ArrayList<Garbage> garbage, int index) {
+        garbage.add(inventory.get(index));
+        inventory.remove(index);
     }
 
     public void printInventory() {
@@ -29,7 +29,12 @@ public class Inventory {
         for (int i = 0; i < inventory.size(); i++) {
             System.out.print((i == 0 ? "" : ", ") + inventory.get(i).getName());
         }
-        System.out.println(".");
+        
+        if (inventory.isEmpty()) {
+            System.out.print("ingenting.\n");
+        } else {
+            System.out.print(".\n");
+        }
     }
 
 }

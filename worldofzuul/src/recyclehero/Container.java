@@ -8,10 +8,6 @@ public class Container {
     private String containerName;
     private int typeContainer;
 
-    public Container() {
-        this.container = new ArrayList<Garbage>();
-    }
-
     public Container(String containerName, int typeContainer) {
         this.container = new ArrayList<Garbage>();
         this.containerName = containerName;
@@ -51,7 +47,7 @@ public class Container {
     }
 
     public void printCon() {
-        System.out.print("Container indeholder : ");
+        System.out.print(typeOfContainer(typeContainer) + " containeren indeholder: ");
         for (int i = 0; i < container.size(); i++) {
             System.out.print((i == 0 ? "" : ", ") + container.get(i).getName());
         }

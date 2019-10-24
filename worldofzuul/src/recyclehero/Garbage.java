@@ -47,6 +47,9 @@ public class Garbage {
             case 2:
                 typeOfGarbage = "Metal";
                 break;
+            case 3:
+                typeOfGarbage = "Pap";
+                break;
             default: // control. if none of the other numbers matches it goes "ukendt" 
                 typeOfGarbage = "Ukendt";
 
