@@ -49,7 +49,7 @@ public class Container {
     public void printCon() {
         System.out.print(typeOfContainer(typeContainer) + " containeren indeholder: ");
         for (int i = 0; i < container.size(); i++) {
-            System.out.print((i == 0 ? "" : ", ") + container.get(i).getName());
+            System.out.print((i == 0 ? "" : ", ") + container.get(i).getGarbageName());
         }
         System.out.println(".");
     }

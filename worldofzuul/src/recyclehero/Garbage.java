@@ -4,12 +4,12 @@ public class Garbage {
 
     private int points;
     private int typeNum;
-    private String name;
+    private String garbageName;
     //private String correctFact;
     //private String incorrectFact;
 
-    public Garbage(String name, int typeNum, int points) {
-        this.name = name;
+    public Garbage(String garbageName, int typeNum, int points) {
+        this.garbageName = garbageName;
         this.typeNum = typeNum;
         this.points = points;
     }
@@ -57,12 +57,12 @@ public class Garbage {
         return typeOfGarbage;
     }
 
-    public String getName() {
-        return name;
+    public String getGarbageName() {
+        return garbageName;
     }
 
     public String getNameAdmin() {
-        return "Garbage item: " + name + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
+        return "Garbage item: " + garbageName + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
     }
 
 }
