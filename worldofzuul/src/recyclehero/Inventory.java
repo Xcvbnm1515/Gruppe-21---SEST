@@ -10,9 +10,8 @@ public class Inventory {
     public Inventory() {
         this.inventory = new ArrayList<Garbage>();
     }
-    
-    public ArrayList<Garbage> getInventory()
-    {
+
+    public ArrayList<Garbage> getInventory() {
         return this.inventory;
     }
 
@@ -34,14 +33,12 @@ public class Inventory {
         for (int i = 0; i < inventory.size(); i++) {
             System.out.print((i == 0 ? "" : ", ") + inventory.get(i).getGarbageName());
         }
-        
+
         if (inventory.isEmpty()) {
             System.out.print("ingenting.\n");
         } else {
             System.out.print(".\n");
         }
     }
-    
-    
 
 }

@@ -1,4 +1,5 @@
 package worldofzuul;
+
 import recyclehero.Garbage;
 import recyclehero.Inventory;
 
@@ -7,21 +8,24 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     Inventory inventory;
-    
+
     Garbage garbage1;
+    Garbage garbage2;
     
     public Game() {
         createRooms();
         parser = new Parser();
         inventory = new Inventory();
-        garbage1 = new Garbage("colaflaske",1,10);
+        
+        garbage1 = new Garbage("colaflaske", 1, 10);
+        garbage2 = new Garbage("dåse",2,5);
     }
 
     private void createRooms() {
         Room outside, theatre, pub, lab, office;
 
         outside = new Room("nu ude foran personalebygningen");
-      
+
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
@@ -38,8 +42,7 @@ public class Game {
         lab.setExit("north", outside);
         lab.setExit("east", office);
 
-        office.setExit("west", lab); 
-
+        office.setExit("west", lab);
 
         currentRoom = outside;
     }
@@ -81,8 +84,9 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.TAG) {
-            
             pickUpGarbage(command, garbage1);
+        } else if (commandWord == CommandWord.TASKE) {
+            printInventory();
         }
         return wantToQuit;
     }
@@ -93,6 +97,19 @@ public class Game {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+    }
+    
+    public void printInventory() {
+        System.out.print("Du bærer: ");
+        for (int i = 0; i < inventory.getInventory().size(); i++) {
+            System.out.print((i == 0 ? "" : ", ") + inventory.getInventory().get(i).getGarbageName());
+        }
+
+        if (inventory.getInventory().isEmpty()) {
+            System.out.print("ingenting.\n");
+        } else {
+            System.out.print(".\n");
+        }
     }
 
     private void goRoom(Command command) {
@@ -113,15 +130,14 @@ public class Game {
         }
     }
 
-     public void pickUpGarbage(Command command, Garbage garbage) {
+    public void pickUpGarbage(Command command, Garbage garbage) {
         if (inventory.getInventory().size() < 2) {
             inventory.getInventory().add(garbage);
         } else {
             System.out.println("Dine hænder er fulde. Kan ikke holde " + garbage.getGarbageName() + " i hænderne.");
         }
     }
-    
-    
+
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
