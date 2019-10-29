@@ -22,13 +22,13 @@ public class Container {
         String typeOfContainer = "";
         switch (typeContainer) {
             case 1:
-                typeOfContainer = "Plastik";
+                typeOfContainer = "Plastic";
                 break;
             case 2:
                 typeOfContainer = "Metal";
                 break;
             default:
-                typeOfContainer = "Ukendt";
+                typeOfContainer = "Unknown";
 
         }
         return typeOfContainer;
@@ -47,7 +47,7 @@ public class Container {
     }
 
     public void printCon() {
-        System.out.print(typeOfContainer(typeContainer) + " containeren indeholder: ");
+        System.out.print(typeOfContainer(typeContainer) + "The container contains: ");
         for (int i = 0; i < container.size(); i++) {
             System.out.print((i == 0 ? "" : ", ") + container.get(i).getGarbageName());
         }

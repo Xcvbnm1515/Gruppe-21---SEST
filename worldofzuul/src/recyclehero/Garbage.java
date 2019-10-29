@@ -42,16 +42,16 @@ public class Garbage {
         String typeOfGarbage = "";
         switch (typeNum) {
             case 1:
-                typeOfGarbage = "Plastik";
+                typeOfGarbage = "Plastic";
                 break;
             case 2:
                 typeOfGarbage = "Metal";
                 break;
             case 3:
-                typeOfGarbage = "Pap";
+                typeOfGarbage = "Cardboard";
                 break;
-            default: // control. if none of the other numbers matches it goes "ukendt" 
-                typeOfGarbage = "Ukendt";
+            default: // control. if none of the other numbers matches it goes "Unknown" 
+                typeOfGarbage = "Unknown";
 
         }
         return typeOfGarbage;
