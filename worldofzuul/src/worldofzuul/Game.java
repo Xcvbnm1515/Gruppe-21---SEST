@@ -11,6 +11,9 @@ public class Game {
         createRooms();
         parser = new Parser();
         inventory = new Inventory();
+    }
+
+    private void createRooms() {
         Garbage grb1, grb2, grb3, grb4, grb5, grb6, grb7, grb8, grb9, grb10, grb11, grb12;
         grb1 = new Garbage("Can", 2, 1);
         grb2 = new Garbage("Thermos mug",1,1);
@@ -24,11 +27,6 @@ public class Game {
         grb10 = new Garbage("Lunchbox",1,1);
         grb11 = new Garbage("Baby bottle",1,1);
         grb12= new Garbage("Handlebar bakset",2,1);
-    }
-
-    private void createRooms() {
-        Garbage grb1 = new Garbage("Bottle", 1, 10);
-        Garbage grb2 = new Garbage("Can", 2, 5);
 
         Room outside = new Room("now in front of the staff room", 0);
         Room plasticCon = new Room("at the plastic container", 1);
@@ -65,10 +63,9 @@ public class Game {
 
     private void printWelcome() {
         System.out.println("Welcome to RecycleHero!");
-        System.out.println("You are an employee at a recycling station and just arrive for work");
+        System.out.println("You're an employee at a recycling station and just arrived for work.");
         System.out.println("Your job is to sort and collect the garbage that are littering on the ground.");
-        System.out.println("Write '" + CommandWord.HELP + "'if you need help.");
-        System.out.println();
+        System.out.println("Write '" + CommandWord.HELP + "' if you need help.\n");
         System.out.println(currentRoom.getLongDescription());
     }
 
@@ -128,7 +125,6 @@ public class Game {
         }
 
         String direction = command.getSecondWord();
-
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
@@ -153,7 +149,7 @@ public class Game {
             System.out.println(currentRoom.getContainer().get(result).getGarbageName() + " has been added");
             currentRoom.getContainer().remove(result);
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("There isn't anything in the container.");
+            System.out.println("The accesed element in index doesn't exist.");
         }
     }
     
@@ -171,12 +167,13 @@ public class Game {
             System.out.println(inventory.getInventory().get(result).getGarbageName() + " has been added to container");
             inventory.getInventory().remove(result);
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("There isn't anything in the inventory.");
+            System.out.println("The accesed element in index doesn't exist.");
         }
     }
 
     public void printContainer() {
         if (!currentRoom.getContainer().isEmpty()) {
+            System.out.print("Contents of container: ");
             for (int i = 0; i < currentRoom.getContainer().size(); i++) {
                 System.out.print((i == 0 ? "" : ", ") + currentRoom.getContainer().get(i).getGarbageName());
             }
