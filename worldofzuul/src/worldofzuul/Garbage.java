@@ -1,4 +1,4 @@
-package recyclehero;
+package worldofzuul;
 
 public class Garbage {
 

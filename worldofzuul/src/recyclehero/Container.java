@@ -1,5 +1,6 @@
 package recyclehero;
 
+import worldofzuul.Garbage;
 import java.util.ArrayList;
 
 public class Container {

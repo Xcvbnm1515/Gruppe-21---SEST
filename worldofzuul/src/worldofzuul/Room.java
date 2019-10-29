@@ -1,23 +1,31 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-import recyclehero.Container;
 
 public class Room {
 
     private String description;
     private HashMap<String, Room> exits;
+    private ArrayList<Garbage> container;
+    private int typeContainer;
 
-    public Room(String description) {
+    public Room(String description, int typeContainer) {
         this.description = description;
         exits = new HashMap<String, Room>();
+        container = new ArrayList<Garbage>();
+        this.typeContainer = typeContainer;
     }
-
+   
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
 
+    public void setGarbage(Garbage garbage) {
+        container.add(garbage);
+    } 
+    
     public String getShortDescription() {
         return description;
     }
@@ -37,5 +45,9 @@ public class Room {
 
     public Room getExit(String direction) {
         return exits.get(direction);
+    }
+    
+    public ArrayList<Garbage> getContainer() {
+        return container;
     }
 }

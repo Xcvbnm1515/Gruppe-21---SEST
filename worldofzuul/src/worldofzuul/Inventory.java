@@ -1,6 +1,5 @@
-package recyclehero;
+package worldofzuul;
 
-import recyclehero.Garbage;
 import java.util.ArrayList;
 
 public class Inventory {

@@ -1,50 +1,41 @@
 package worldofzuul;
 
-import recyclehero.Garbage;
-import recyclehero.Inventory;
-
 public class Game {
 
     private Parser parser;
     private Room currentRoom;
-    Inventory inventory;
+    private Inventory inventory;
 
-    Garbage garbage1;
-    Garbage garbage2;
-    
     public Game() {
         createRooms();
         parser = new Parser();
         inventory = new Inventory();
-        
-        garbage1 = new Garbage("Coke bottle", 1, 10);
-        garbage2 = new Garbage("Can",2,5);
     }
 
     private void createRooms() {
-        Room outside, theatre, pub, lab, office;
+        Garbage grb1 = new Garbage("Bottle", 1, 10);
+        Garbage grb2 = new Garbage("Can", 2, 5);
 
-        outside = new Room("now in front of the staff room");
+        Room outside = new Room("now in front of the staff room", 0);
+        Room plasticCon = new Room("at the plastic container", 1);
+        Room metalCon = new Room("at the metal container", 2);
+        Room glassCon = new Room("at the glass container", 3);
 
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        outside.setExit("east", plasticCon);
+        outside.setExit("south", metalCon);
 
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        plasticCon.setExit("south", glassCon);
+        plasticCon.setExit("west", outside);
+        plasticCon.setGarbage(grb1);
+        plasticCon.setGarbage(grb2);
 
-        theatre.setExit("west", outside);
+        metalCon.setExit("north", outside);
+        metalCon.setExit("east", glassCon);
 
-        pub.setExit("east", outside);
+        glassCon.setExit("north", plasticCon);
+        glassCon.setExit("west", metalCon);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        currentRoom = outside; // default 
     }
 
     public void play() {
@@ -83,11 +74,15 @@ public class Game {
             goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
-        } else if (commandWord == CommandWord.TAG) {
-            pickUpGarbage(command, garbage1);
-        } else if (commandWord == CommandWord.INVENTORY) {
+        } else if (commandWord == CommandWord.TAKE) {
+            pickUpGarbage(command);
+        } else if (commandWord == CommandWord.DROP) {
+            dropGarbage(command);
+        }  else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
-        }
+        } else if (commandWord == CommandWord.LOOK) {
+            printContainer();
+        } 
         return wantToQuit;
     }
 
@@ -98,7 +93,7 @@ public class Game {
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-    
+
     public void printInventory() {
         System.out.print("You're holding: ");
         for (int i = 0; i < inventory.getInventory().size(); i++) {
@@ -130,11 +125,50 @@ public class Game {
         }
     }
 
-    public void pickUpGarbage(Command command, Garbage garbage) {
-        if (inventory.getInventory().size() < 2) {
-            inventory.getInventory().add(garbage);
+    public void pickUpGarbage(Command command) {
+        try {
+            if (!command.hasSecondWord()) {
+                System.out.println("Take what?");
+                return;
+            }
+
+            String direction = command.getSecondWord();
+            int result = Integer.parseInt(direction);
+
+            inventory.getInventory().add(currentRoom.getContainer().get(result));
+            System.out.println(currentRoom.getContainer().get(result).getGarbageName() + " has been added");
+            currentRoom.getContainer().remove(result);
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("There isn't anything in the container.");
+        }
+    }
+    
+    public void dropGarbage(Command command) {
+        try {
+            if (!command.hasSecondWord()) {
+                System.out.println("Drop what?");
+                return;
+            }
+
+            String direction = command.getSecondWord();
+            int result = Integer.parseInt(direction);
+
+            currentRoom.getContainer().add(inventory.getInventory().get(result));
+            System.out.println(inventory.getInventory().get(result).getGarbageName() + " has been added to container");
+            inventory.getInventory().remove(result);
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("There isn't anything in the inventory.");
+        }
+    }
+
+    public void printContainer() {
+        if (!currentRoom.getContainer().isEmpty()) {
+            for (int i = 0; i < currentRoom.getContainer().size(); i++) {
+                System.out.print((i == 0 ? "" : ", ") + currentRoom.getContainer().get(i).getGarbageName());
+            }
+            System.out.println(".");
         } else {
-            System.out.println("Your hands are full. You cannot hold" + garbage.getGarbageName() + "in your hands.");
+            System.out.println("The container is empty.");
         }
     }
 
@@ -146,4 +180,5 @@ public class Game {
             return true;
         }
     }
+
 }
