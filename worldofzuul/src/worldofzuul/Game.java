@@ -6,10 +6,24 @@ public class Game {
     private Room currentRoom;
     private Inventory inventory;
 
+   
     public Game() {
         createRooms();
         parser = new Parser();
         inventory = new Inventory();
+        Garbage grb1, grb2, grb3, grb4, grb5, grb6, grb7, grb8, grb9, grb10, grb11, grb12;
+        grb1 = new Garbage("Can", 2, 1);
+        grb2 = new Garbage("Thermos mug",1,1);
+        grb3 = new Garbage("Vine bottle",4,1);
+        grb4 = new Garbage("Thermos bottle",2,1);
+        grb5 = new Garbage("Mirror",4,1);
+        grb6 = new Garbage("Parfume container",4,1);
+        grb7 = new Garbage("Coke bottle",1,1);
+        grb8 = new Garbage("Key",2,1);
+        grb9 = new Garbage("Aquarium",4,1);
+        grb10 = new Garbage("Lunchbox",1,1);
+        grb11 = new Garbage("Baby bottle",1,1);
+        grb12= new Garbage("Handlebar bakset",2,1);
     }
 
     private void createRooms() {

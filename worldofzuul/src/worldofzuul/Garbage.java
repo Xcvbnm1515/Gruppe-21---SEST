@@ -14,7 +14,7 @@ public class Garbage {
         this.points = points;
     }
 
-   /* public void setPoints(int points) {
+    /* public void setPoints(int points) {
         this.points = points;
     }
 
@@ -49,6 +49,9 @@ public class Garbage {
                 break;
             case 3:
                 typeOfGarbage = "Cardboard";
+                break;
+            case 4:
+                typeOfGarbage = "Glass";
                 break;
             default: // control. if none of the other numbers matches it goes "Unknown" 
                 typeOfGarbage = "Unknown";
