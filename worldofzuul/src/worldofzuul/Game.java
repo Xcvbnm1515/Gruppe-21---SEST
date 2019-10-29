@@ -17,7 +17,7 @@ public class Game {
         parser = new Parser();
         inventory = new Inventory();
         
-        garbage1 = new Garbage("Cola flaske", 1, 10);
+        garbage1 = new Garbage("Coke bottle", 1, 10);
         garbage2 = new Garbage("Can",2,5);
     }
 
