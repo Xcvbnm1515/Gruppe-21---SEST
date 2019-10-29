@@ -11,14 +11,37 @@ public class Game {
 
     Garbage garbage1;
     Garbage garbage2;
+    Garbage garbage3;
+    Garbage garbage4;
+    Garbage garbage5;
+    Garbage garbage6;
+    Garbage garbage7;
+    Garbage garbage8;
+    Garbage garbage9;
+    Garbage garbage10;
+    Garbage garbage11;
+    Garbage garbage12;
+    
+    
+    
     
     public Game() {
         createRooms();
         parser = new Parser();
         inventory = new Inventory();
         
-        garbage1 = new Garbage("Coke bottle", 1, 10);
-        garbage2 = new Garbage("Can",2,5);
+        garbage1 = new Garbage("Can", 2, 1);
+        garbage2 = new Garbage("Thermos mug",1,1);
+        garbage3 = new Garbage("Vine bottle",4,1);
+        garbage4 = new Garbage("Thermos bottle",2,1);
+        garbage5 = new Garbage("Mirror",4,1);
+        garbage6 = new Garbage("Parfume container",4,1);
+        garbage7 = new Garbage("Coke bottle",1,1);
+        garbage8 = new Garbage("Key",2,1);
+        garbage9 = new Garbage("Aquarium",4,1);
+        garbage10 = new Garbage("Lunchbox",1,1);
+        garbage11 = new Garbage("Baby bottle",1,1);
+        garbage12= new Garbage("Handlebar bakset",2,1);
     }
 
     private void createRooms() {
