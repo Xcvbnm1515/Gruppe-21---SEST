@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import recyclehero.Garbage;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
@@ -9,13 +10,13 @@ public class Room {
     private String description;
     private HashMap<String, Room> exits;
     private ArrayList<Garbage> container;
-    private int typeContainer;
+    private int typeOfContainer;
 
-    public Room(String description, int typeContainer) {
+    public Room(String description, int typeOfContainer) {
         this.description = description;
         exits = new HashMap<String, Room>();
         container = new ArrayList<Garbage>();
-        this.typeContainer = typeContainer;
+        this.typeOfContainer = typeOfContainer;
     }
    
     public void setExit(String direction, Room neighbor) {
@@ -49,5 +50,23 @@ public class Room {
     
     public ArrayList<Garbage> getContainer() {
         return container;
+    }
+    public String typeOfContainer(){
+        String type = "";
+        switch (typeOfContainer){
+            case 0: type = "battery";
+            break;
+            case 1: type = "plastic";
+            break;
+            case 2: type = "metal";
+            break;
+            case 3: type = "glass";
+            break;
+        } 
+        return type;
+ 
+    }
+    public int gettypeOfContainer() {
+        return typeOfContainer;
     }
 }

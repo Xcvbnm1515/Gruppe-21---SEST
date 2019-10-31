@@ -1,4 +1,4 @@
-package worldofzuul;
+package recyclehero;
 
 public class Garbage {
 
@@ -14,26 +14,14 @@ public class Garbage {
         this.points = points;
     }
 
-    /* public void setPoints(int points) {
+     public void setPoints(int points) {
         this.points = points;
     }
 
     public int getPoints() {
         return points;
     }
-
-    public void setFact(String correctFact) {
-        this.correctFact = correctFact;
-    }
-
-    public String getFact() {
-        return correctFact;
-    }
-     */
-    public void setTypeNum(int typeNum) {
-        this.typeNum = typeNum;
-    }
-
+    
     public int getTypeNum() {
         return typeNum;
     }
