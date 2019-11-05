@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.io.File;
 import recyclehero.Inventory;
 import recyclehero.Garbage;
 
@@ -32,13 +33,13 @@ public class Game {
         grb11 = new Garbage("babyBottle", 1, 1);
         grb12 = new Garbage("handlebarBasket", 2, 1);
 
-        Room outside = new Room("now in front of the staff room", 0);
-        Room plasticCon = new Room("at the plastic container", 1);
-        Room metalCon = new Room("at the metal container", 2);
-        Room glassCon = new Room("at the glass container", 3);
-
-        outside.setExit("east", plasticCon);
+       
+        Room outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.cvs"));
+        Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.cvs"));
+        Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.cvs"));
+        Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.csv"));
         outside.setExit("south", metalCon);
+        outside.setExit("east", plasticCon);
 
         plasticCon.setExit("south", glassCon);
         plasticCon.setExit("west", outside);
@@ -98,18 +99,25 @@ public class Game {
         } else if (commandWord == CommandWord.LOOK) {
             printContainer();
         } else if (commandWord == CommandWord.DONE) {
-            System.out.println("You're done with the game. Your score is [" + maxPoints + "]."); 
+            System.out.println("You're done with the game. Your score is [" + maxPoints + "].");
+            
+            currentRoom.printFactList();
+            
             
         }
         return wantToQuit;
     }
 
     private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println("\nGo: to move between rooms. Use direction after go command");
+        System.out.println("Quit: to leave the game.");
+        System.out.println("Take: to pick up items.");
+        System.out.println("Drop: to drop items.");
+        System.out.println("Inventory: to show your item(s) in your hands.");
+        System.out.println("Look: to look inside containers.");
+        System.out.println("Score: to see your score.");
     }
 
     public void printInventory() {

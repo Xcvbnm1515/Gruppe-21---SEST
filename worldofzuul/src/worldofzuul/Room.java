@@ -4,6 +4,11 @@ import recyclehero.Garbage;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Room {
 
@@ -11,12 +16,14 @@ public class Room {
     private HashMap<String, Room> exits;
     private ArrayList<Garbage> container;
     private int typeOfContainer;
+    private File factList;
 
-    public Room(String description, int typeOfContainer) {
+    public Room(String description, int typeOfContainer, File factList) {
         this.description = description;
         exits = new HashMap<String, Room>();
         container = new ArrayList<Garbage>();
         this.typeOfContainer = typeOfContainer;
+        this.factList = factList;
     }
    
     public void setExit(String direction, Room neighbor) {
@@ -51,6 +58,10 @@ public class Room {
     public ArrayList<Garbage> getContainer() {
         return container;
     }
+    public File getFactList(){
+        return factList;
+    }
+            
     public String typeOfContainer(){
         String type = "";
         switch (typeOfContainer){
@@ -68,5 +79,17 @@ public class Room {
     }
     public int gettypeOfContainer() {
         return typeOfContainer;
+    }
+    public void printFactList(){
+        try {
+            Scanner myScanner = new Scanner(getFactList());
+            while(myScanner.hasNext()){
+                System.out.println(myScanner.next());
+                
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            System.out.println("File not found.");
+        }
     }
 }
