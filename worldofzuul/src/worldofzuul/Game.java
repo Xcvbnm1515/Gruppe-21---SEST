@@ -34,10 +34,10 @@ public class Game {
         grb12 = new Garbage("handlebarBasket", 2, 1);
 
        
-        Room outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.cvs"));
-        Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.cvs"));
-        Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.cvs"));
-        Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.csv"));
+        Room outside = new Room("now in front of the staff room", 0, new File("Resources\\Facts\\BatteryFacts.csv"));
+        Room plasticCon = new Room("at the plastic container", 1, new File("Resources\\Facts\\PlasticFacts.csv"));
+        Room metalCon = new Room("at the metal container", 2, new File("Resources\\Facts\\MetalFacts.csv"));
+        Room glassCon = new Room("at the glass container", 3, new File("Resources\\Facts\\GlassFacts.csv"));
         outside.setExit("south", metalCon);
         outside.setExit("east", plasticCon);
 
@@ -100,10 +100,7 @@ public class Game {
             printContainer();
         } else if (commandWord == CommandWord.DONE) {
             System.out.println("You're done with the game. Your score is [" + maxPoints + "].");
-            
-            currentRoom.printFactList();
-            
-            
+            currentRoom.printFactList();  
         }
         return wantToQuit;
     }
@@ -166,9 +163,7 @@ public class Game {
             } else {
                 System.out.println("The item was not in the container");
             }
-
         }
-
     }
 
     public void dropGarbage(Command command) {

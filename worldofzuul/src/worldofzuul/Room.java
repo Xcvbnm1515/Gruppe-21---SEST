@@ -83,8 +83,8 @@ public class Room {
     public void printFactList(){
         try {
             Scanner myScanner = new Scanner(getFactList());
-            while(myScanner.hasNext()){
-                System.out.println(myScanner.next());
+            while(myScanner.hasNextLine()){
+                System.out.println(myScanner.nextLine());
                 
             }
         } catch (FileNotFoundException ex) {
