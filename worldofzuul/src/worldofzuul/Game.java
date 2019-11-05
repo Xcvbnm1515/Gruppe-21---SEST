@@ -181,6 +181,10 @@ public class Game {
             if (garbageName.equals(inventory.getInventory().get(i).getGarbageName())) {
                 if (inventory.getInventory().get(i).getTypeNum() == currentRoom.gettypeOfContainer()) {
                     startPoint += inventory.getInventory().get(i).getPoints();
+                    currectfact();
+                }
+                else {
+                    wrongfact();
                 }
 
                 currentRoom.getContainer().add(inventory.getInventory().get(i));
