@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
+
 
 public class Room {
 
@@ -82,7 +82,10 @@ public class Room {
     }
     public void printFactList(){
         try {
+            String[] facts = new String[10];
+            PrintWriter myPrinter = new PrintWriter(getFactList());
             Scanner myScanner = new Scanner(getFactList());
+            
             while(myScanner.hasNextLine()){
                 System.out.println(myScanner.nextLine());
                 
@@ -91,5 +94,13 @@ public class Room {
             ex.printStackTrace();
             System.out.println("File not found.");
         }
+    }
+    
+    public void getGoodFact() {
+        
+    }
+    
+    public void getBadFact(){
+        
     }
 }

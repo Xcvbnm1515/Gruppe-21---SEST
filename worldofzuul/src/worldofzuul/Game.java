@@ -181,10 +181,10 @@ public class Game {
             if (garbageName.equals(inventory.getInventory().get(i).getGarbageName())) {
                 if (inventory.getInventory().get(i).getTypeNum() == currentRoom.gettypeOfContainer()) {
                     startPoint += inventory.getInventory().get(i).getPoints();
-                    currectfact();
+                    getGoodFact();
                 }
                 else {
-                    wrongfact();
+                    getBadFact();
                 }
 
                 currentRoom.getContainer().add(inventory.getInventory().get(i));
@@ -219,5 +219,8 @@ public class Game {
             return true;
         }
     }
+    
+    
+    public void get
 
 }
