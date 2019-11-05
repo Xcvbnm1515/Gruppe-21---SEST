@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.PrintWriter;
+import java.util.Random;
 
 public class Room {
 
@@ -16,6 +17,7 @@ public class Room {
     private ArrayList<Garbage> container;
     private int typeOfContainer;
     private File factList;
+    private String[] copyFacts = new String[10];
 
     public Room(String description, int typeOfContainer, File factList) {
         this.description = description;
@@ -86,33 +88,35 @@ public class Room {
         return typeOfContainer;
     }
 
-    public void printFactList() {
+    public void getGoodFact() {
+        addFactList();
+        System.out.println(copyFacts[0 + (int) (Math.random() * 5)]);
+    }
+
+    public void getBadFact() {
+        addFactList();
+        System.out.println(copyFacts[5 + (int) (Math.random() * 5)]);
+    }
+
+    public void addFactList() {
         try {
-            ArrayList<String> copyFacts = new ArrayList<>();
-           // PrintWriter myPrinter = new PrintWriter(getFactList());
+
+            // PrintWriter myPrinter = new PrintWriter(getFactList());
             Scanner myScanner = new Scanner(getFactList());
-            
+
             while (myScanner.hasNext()) {
-               // copyFacts.add(myScanner.nextLine());
-                System.out.println(myScanner.hasNext());
+                for (int i = 0; i < copyFacts.length; i++) {
+                    copyFacts[i] = myScanner.nextLine();
+                    //  System.out.println(copyFacts[i]);
+                }
             }
-            for ( int i = 0 ; i < copyFacts.size() ; i++)
-            {
-                System.out.println(copyFacts.get(i));
-            }
-            
+
             myScanner.close();
+
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
             System.out.println("File not found.");
         }
     }
 
-    public void getGoodFact() {
-
-    }
-
-    public void getBadFact() {
-
-    }
 }
