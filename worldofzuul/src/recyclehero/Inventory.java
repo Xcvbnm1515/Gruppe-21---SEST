@@ -19,7 +19,7 @@ public class Inventory {
         if (inventory.size() < 2) {
             inventory.add(garbage);
         } else {
-            System.out.println("Dine hænder er fulde. Kan ikke holde " + garbage.getGarbageName() + " i hænderne.");
+            System.out.println("Your hands are full. You cannot hold" + garbage.getGarbageName() + "in your hands.");
         }
     }
 
@@ -29,13 +29,13 @@ public class Inventory {
     }
 
     public void printInventory() {
-        System.out.print("Du bærer: ");
+        System.out.print("Your are holding: ");
         for (int i = 0; i < inventory.size(); i++) {
             System.out.print((i == 0 ? "" : ", ") + inventory.get(i).getGarbageName());
         }
 
         if (inventory.isEmpty()) {
-            System.out.print("ingenting.\n");
+            System.out.print("nothing.\n");
         } else {
             System.out.print(".\n");
         }
