@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
-
 public class Room {
 
     private String description;
@@ -25,15 +24,15 @@ public class Room {
         this.typeOfContainer = typeOfContainer;
         this.factList = factList;
     }
-   
+
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
 
     public void setGarbage(Garbage garbage) {
         container.add(garbage);
-    } 
-    
+    }
+
     public String getShortDescription() {
         return description;
     }
@@ -54,53 +53,66 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
+
     public ArrayList<Garbage> getContainer() {
         return container;
     }
-    public File getFactList(){
+
+    public File getFactList() {
         return factList;
     }
-            
-    public String typeOfContainer(){
+
+    public String typeOfContainer() {
         String type = "";
-        switch (typeOfContainer){
-            case 0: type = "battery";
-            break;
-            case 1: type = "plastic";
-            break;
-            case 2: type = "metal";
-            break;
-            case 3: type = "glass";
-            break;
-        } 
+        switch (typeOfContainer) {
+            case 0:
+                type = "battery";
+                break;
+            case 1:
+                type = "plastic";
+                break;
+            case 2:
+                type = "metal";
+                break;
+            case 3:
+                type = "glass";
+                break;
+        }
         return type;
- 
+
     }
+
     public int gettypeOfContainer() {
         return typeOfContainer;
     }
-    public void printFactList(){
+
+    public void printFactList() {
         try {
-            String[] facts = new String[10];
-            PrintWriter myPrinter = new PrintWriter(getFactList());
+            ArrayList<String> copyFacts = new ArrayList<>();
+           // PrintWriter myPrinter = new PrintWriter(getFactList());
             Scanner myScanner = new Scanner(getFactList());
             
-            while(myScanner.hasNextLine()){
-                System.out.println(myScanner.nextLine());
-                
+            while (myScanner.hasNext()) {
+               // copyFacts.add(myScanner.nextLine());
+                System.out.println(myScanner.hasNext());
             }
+            for ( int i = 0 ; i < copyFacts.size() ; i++)
+            {
+                System.out.println(copyFacts.get(i));
+            }
+            
+            myScanner.close();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
             System.out.println("File not found.");
         }
     }
-    
+
     public void getGoodFact() {
-        
+
     }
-    
-    public void getBadFact(){
-        
+
+    public void getBadFact() {
+
     }
 }
