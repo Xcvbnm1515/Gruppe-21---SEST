@@ -77,6 +77,7 @@ public class Game {
         } else {
             if (currentRoom.equals(outside)) {
                 System.out.println("Your final number of points is: " + startPoint + "!");
+                System.out.println("Your rank is " + getPlayerRank() + ".");
                 hasEnded = true;
             } else {
                 System.out.println("You have to be in front of the staff room.");
@@ -186,6 +187,20 @@ public class Game {
                 startPoint += currentRoom.getContainer().get(i).getPoints();
             }
         }
+    }
+    
+    public String getPlayerRank() {
+        String rank = "";
+        if (startPoint == 0) {
+            rank = "beginner. Do some try research. Try again";
+        } else if (startPoint <= 5) {
+            rank = "amateur. You can do it better. Try again";
+        } else if (startPoint <= 10) {
+            rank = "semi-professional. You are skilled. Try again";
+        } else if (startPoint == 12) {
+            rank = "recyclehero. You know your stuff.";
+        }
+        return rank;
     }
 
     public void printContainer() {
