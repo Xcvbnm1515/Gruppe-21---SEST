@@ -5,11 +5,13 @@ import recyclehero.Inventory;
 import recyclehero.Garbage;
 import java.util.Scanner;
 
+
 public class Game {
 
     private Parser parser;
     private Room currentRoom;
     private Inventory inventory;
+    private Points points;
     private int startPoint;
     private Room outside;
     private String username;
@@ -19,6 +21,7 @@ public class Game {
         parser = new Parser();
         inventory = new Inventory();
         startPoint = 0;
+        points = new Points();
     }
 
     private void createRooms() {
@@ -36,7 +39,7 @@ public class Game {
         grb11 = new Garbage("babyBottle", 1, 1);
         grb12 = new Garbage("handlebarBasket", 2, 1);
 
-        Room outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
+         outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
         Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.csv"));
         Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.csv"));
         Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.csv"));
@@ -234,6 +237,8 @@ public class Game {
             if (currentRoom.equals(outside)) {
                 System.out.println("Points: " + startPoint);
                 hasEnded = true;
+               points.addToHighScore(username, startPoint);
+              
             } else {
                 System.out.println("You have to be in front of the staff room.");
             }
@@ -248,4 +253,14 @@ public class Game {
         return username;
     }
     
+    public String getUsername()
+    {
+        return username;
+    }
+    
+    public String getStartPoint()
+    {
+        
+        return Integer.toString(startPoint);
+    }
 }
