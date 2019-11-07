@@ -109,8 +109,8 @@ public class Game {
             inventory.printInventory();
         } else if (commandWord == CommandWord.LOOK) {
             printContainer();
-        } else if (commandWord == CommandWord.DONE) {
-            System.out.println("You're done with the game. Your score is [" + startPoint + "].");
+        } else if (commandWord == CommandWord.SCORE) {
+            System.out.println("Your current score is [" + startPoint + "].");
         }
         return wantToQuit;
     }
