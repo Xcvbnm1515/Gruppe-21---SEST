@@ -3,6 +3,7 @@ package worldofzuul;
 import java.io.File;
 import recyclehero.Inventory;
 import recyclehero.Garbage;
+import java.util.Scanner;
 
 public class Game {
 
@@ -11,6 +12,7 @@ public class Game {
     private Inventory inventory;
     private int startPoint;
     private Room outside;
+    private String username;
 
     public Game() {
         createRooms();
@@ -34,10 +36,11 @@ public class Game {
         grb11 = new Garbage("babyBottle", 1, 1);
         grb12 = new Garbage("handlebarBasket", 2, 1);
 
-        outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
+        Room outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
         Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.csv"));
         Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.csv"));
         Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.csv"));
+
         outside.setExit("south", metalCon);
         outside.setExit("east", plasticCon);
 
@@ -67,7 +70,9 @@ public class Game {
     }
 
     private void printWelcome() {
-        System.out.println("Welcome to RecycleHero!");
+        createUsername();
+        
+        System.out.println("Welcome to RecycleHero, " + username + "!");
         System.out.println("You're an employee at a recycling station and just arrived for work.");
         System.out.println("Your job is to sort and collect the garbage that are littering on the ground.");
         System.out.println("Write '" + CommandWord.HELP + "' if you need help.\n");
@@ -143,6 +148,7 @@ public class Game {
         } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            checkContainerPoints();
         }
     }
 
@@ -176,7 +182,9 @@ public class Game {
             System.out.println("Drop what?");
             return;
         }
+
         String garbageName = command.getSecondWord();
+
         for (int i = 0; i < inventory.getInventory().size(); i++) {
             if (garbageName.equalsIgnoreCase(inventory.getInventory().get(i).getGarbageName())) {
                 if (inventory.getInventory().get(i).getTypeNum() == currentRoom.gettypeOfContainer()) {
@@ -195,6 +203,14 @@ public class Game {
 
         }
 
+    }
+
+    public void checkContainerPoints() {
+        for (int i = 0; i < currentRoom.getContainer().size(); i++) {
+            if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.gettypeOfContainer()) {
+                startPoint += currentRoom.getContainer().get(i).getPoints();
+            }
+        }
     }
 
     public void printContainer() {
@@ -225,4 +241,11 @@ public class Game {
         }
     }
 
+    public String createUsername() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.print("Type your name: ");
+        username = myScanner.nextLine();
+        return username;
+    }
+    
 }

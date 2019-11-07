@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.io.PrintWriter;
-import java.util.Random;
 
 public class Room {
 
