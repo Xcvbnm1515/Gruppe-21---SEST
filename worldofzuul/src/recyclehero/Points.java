@@ -58,25 +58,25 @@ public class Points {
     public void writePointsToFile(String createUsername, int startPoint) {
         try {
             Scanner reader = new Scanner(pointsFile);
-            while (reader.hasNext()) { // iterate file
+            while (reader.hasNext()) { // iterate through file
                 pointsList.add(reader.nextLine()); // add every string in file to list
             }
 
-            if (pointsList.size() >= 3) { // if size is bigger or equal to three, remove first obj and insert new
+            if (pointsList.size() >= 3) { // if size is bigger or equal to three, remove first obj and insert new score
                 pointsList.remove(0); // remove first obj
-                pointsList.add(createUsername + " " + startPoint); // add new score  
-            } else {
-                pointsList.add(createUsername + " " + startPoint); // add new score    
+                pointsList.add(createUsername + " " + startPoint); // add both username and start point as one string
+            } else { // else just add new score as normal
+                pointsList.add(createUsername + " " + startPoint);    
             }
 
-            reader.close();
+            reader.close(); // close scanner
 
             PrintWriter writer = new PrintWriter(pointsFile); // print writer obj 
             for (int i = 0; i < pointsList.size(); i++) {
                 writer.println(pointsList.get(i)); // overwrite every line
             }
-            writer.close();
-        } catch (FileNotFoundException ex) {
+            writer.close(); // close writer
+        } catch (FileNotFoundException ex) { // If the file doesn't exist, print trace
             ex.printStackTrace();
         }
     }

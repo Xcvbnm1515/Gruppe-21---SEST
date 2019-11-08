@@ -52,9 +52,11 @@ public class Game {
 
         metalCon.setExit("north", outside);
         metalCon.setExit("east", glassCon);
+        metalCon.setGarbage(grb8);
 
         glassCon.setExit("north", plasticCon);
         glassCon.setExit("west", metalCon);
+        glassCon.setGarbage(grb5);
 
         currentRoom = outside; // default 
     }
@@ -160,7 +162,6 @@ public class Game {
     }
 
     public void dropGarbage(Command command) {
-
         if (!command.hasSecondWord()) {
             System.out.println("Drop what?");
             return;
@@ -185,10 +186,13 @@ public class Game {
 
     }
 
+    // Method which checks if container in room has been automatically checked
     public void checkContainerPoints() {
+        if (currentRoom.hasRoomBeenChecked() == false) // If false, check container
         for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-            if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
-                startPoint += currentRoom.getContainer().get(i).getPoints();
+            if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) { // Check every equal types
+                currentRoom.setHasRoomBeenChecked(true); // Set checked container to true
+                startPoint += currentRoom.getContainer().get(i).getPoints(); // Sum points with the points of equal items in the container
             }
         }
     }
