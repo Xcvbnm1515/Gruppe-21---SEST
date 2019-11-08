@@ -15,7 +15,7 @@ public class Room {
     private ArrayList<Garbage> container;
     private int typeOfContainer;
     private File factList;
-    private String[] copyFacts = new String[10];
+    private String[] copyFacts;
 
     public Room(String description, int typeOfContainer, File factList) {
         this.description = description;
@@ -23,6 +23,7 @@ public class Room {
         container = new ArrayList<Garbage>();
         this.typeOfContainer = typeOfContainer;
         this.factList = factList;
+        copyFacts = new String[10];
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -82,7 +83,7 @@ public class Room {
 
     }
 
-    public int gettypeOfContainer() {
+    public int getTypeOfContainer() {
         return typeOfContainer;
     }
 
@@ -116,5 +117,4 @@ public class Room {
             System.out.println("File not found.");
         }
     }
-
 }
