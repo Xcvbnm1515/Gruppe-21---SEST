@@ -14,7 +14,20 @@ public class Inventory {
     public ArrayList<Garbage> getInventory() {
         return this.inventory;
     }
-    
+
+    public void pickUpGarbage(Garbage garbage) {
+        if (inventory.size() < 2) {
+            inventory.add(garbage);
+        } else {
+            System.out.println("Your hands are full. You cannot hold" + garbage.getGarbageName() + "in your hands.");
+        }
+    }
+
+    public void dropGarbage(ArrayList<Garbage> container, int index) {
+        container.add(inventory.get(index));
+        inventory.remove(index);
+    }
+
     public void printInventory() {
         System.out.print("Your are holding: ");
         for (int i = 0; i < inventory.size(); i++) {
