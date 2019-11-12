@@ -10,15 +10,18 @@ import java.util.Scanner;
 
 public class Room {
     // Declare variables and instances
-    private String description;
-    private HashMap<String, Room> exits;
-    private ArrayList<Garbage> container;
-    private int typeOfContainer;
-    private File factList;
-    private String[] copyFacts;
-    private boolean hasContainerBeenChecked;
+    private String description; // Room which describes what room player is in.
+    private HashMap<String, Room> exits; // <Key><value> pair, where 'index' is string based.
+    private ArrayList<Garbage> container; // List that contains container items.
+    private int typeOfContainer; // Type of container in numeric (later to string - switch case).
+    private File factList; // Used to gather the file of facts for each current room.
+    private String[] copyFacts; // Array of string object that 'clones' the file contents.
+    private boolean hasContainerBeenChecked; // Boolean to check if container has been points checked.
 
-    // Constructor which gives value to variable and instansiate objects. Has 3 args. 
+    /* 
+    * Constructor which gives value to variable and instansiate objects. Has 3 args: 
+    * description, typeofcontainer and the room's file of facts.
+    */
     public Room(String description, int typeOfContainer, File factList) {
         this.description = description;
         exits = new HashMap<String, Room>();
@@ -26,10 +29,10 @@ public class Room {
         this.typeOfContainer = typeOfContainer;
         this.factList = factList;
         copyFacts = new String[10];
-        hasContainerBeenChecked = false; // default check is false
+        hasContainerBeenChecked = false; // Default container points check is false.
     }
     
-    // Accesor which returns fault from hasContainerBeenChecked
+    // Accesor which returns fault from hasContainerBeenChecked.
     public boolean hasRoomBeenChecked() {
         return hasContainerBeenChecked;
     }

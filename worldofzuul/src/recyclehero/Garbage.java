@@ -5,8 +5,6 @@ public class Garbage {
     private int points;
     private int typeNum;
     private String garbageName;
-    //private String correctFact;
-    //private String incorrectFact;
 
     public Garbage(String garbageName, int typeNum, int points) {
         this.garbageName = garbageName;
@@ -14,14 +12,14 @@ public class Garbage {
         this.points = points;
     }
 
-     public void setPoints(int points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
     public int getPoints() {
         return points;
     }
-    
+
     public int getTypeNum() {
         return typeNum;
     }
@@ -29,6 +27,9 @@ public class Garbage {
     public String typeOfGarbage(int type) {
         String typeOfGarbage = "";
         switch (typeNum) {
+            case 0:
+                typeOfGarbage = "Battery";
+                break;
             case 1:
                 typeOfGarbage = "Plastic";
                 break;
@@ -36,9 +37,6 @@ public class Garbage {
                 typeOfGarbage = "Metal";
                 break;
             case 3:
-                typeOfGarbage = "Cardboard";
-                break;
-            case 4:
                 typeOfGarbage = "Glass";
                 break;
             default: // control. if none of the other numbers matches it goes "Unknown" 
