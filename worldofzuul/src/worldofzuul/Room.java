@@ -97,7 +97,7 @@ public class Room {
         String type = "";
         switch (typeOfContainer) {
             case 0:
-                type = "battery";
+                type = "chemicals";
                 break;
             case 1:
                 type = "plastic";

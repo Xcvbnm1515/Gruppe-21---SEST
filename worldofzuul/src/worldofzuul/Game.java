@@ -27,18 +27,18 @@ public class Game {
     private void createRooms() {
         // Instansiate garbage objects.
         Garbage grb1, grb2, grb3, grb4, grb5, grb6, grb7, grb8, grb9, grb10, grb11, grb12;
-        grb1 = new Garbage("Can", 2, 1);
-        grb2 = new Garbage("ThermosMug", 1, 1);
-        grb3 = new Garbage("WineBottle", 3, 1);
-        grb4 = new Garbage("ThermosFlask", 2, 1);
-        grb5 = new Garbage("Mirror", 3, 1);
-        grb6 = new Garbage("PerfumeContainer", 3, 1);
-        grb7 = new Garbage("CokeBottle", 1, 1);
-        grb8 = new Garbage("Key", 2, 1);
-        grb9 = new Garbage("Aquarium", 3, 1);
-        grb10 = new Garbage("Lunchbox", 1, 1);
-        grb11 = new Garbage("BabyBottle", 1, 1);
-        grb12 = new Garbage("HandlebarBasket", 2, 1);
+        grb1 = new Garbage("Spraycan", 0, 1);
+        grb2 = new Garbage("Batteries", 0, 1);
+        grb3 = new Garbage("Paint", 0, 1);
+        grb4 = new Garbage("ThermosMug", 1, 1);
+        grb5 = new Garbage("Lunchbox", 1, 1);
+        grb6 = new Garbage("CokeBottle", 1, 1);
+        grb7 = new Garbage("Can", 2, 1);
+        grb8 = new Garbage("ThermosFlask", 2, 1);
+        grb9 = new Garbage("Key", 2, 1);
+        grb10 = new Garbage("WineBottle", 3, 1);
+        grb11 = new Garbage("Mirror", 3, 1);
+        grb12 = new Garbage("PerfumeContainer", 3, 1);
 
         // Instansiate room objects.
         outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
@@ -49,28 +49,36 @@ public class Game {
         // Set exits and garbage items in rooms via setters. 
         outside.setExit("south", metalCon);
         outside.setExit("east", plasticCon);
+        outside.setGarbage(grb2);
+        outside.setGarbage(grb10);
 
         plasticCon.setExit("south", glassCon);
         plasticCon.setExit("west", outside);
         plasticCon.setGarbage(grb1);
-        plasticCon.setGarbage(grb2);
+        plasticCon.setGarbage(grb4);
+        plasticCon.setGarbage(grb9);
 
         metalCon.setExit("north", outside);
         metalCon.setExit("east", glassCon);
         metalCon.setGarbage(grb8);
+        metalCon.setGarbage(grb12);
+        metalCon.setGarbage(grb6);
+        metalCon.setGarbage(grb5);
 
         glassCon.setExit("north", plasticCon);
         glassCon.setExit("west", metalCon);
-        glassCon.setGarbage(grb5);
+        glassCon.setGarbage(grb3);
+        glassCon.setGarbage(grb7);
+        glassCon.setGarbage(grb11);
 
         currentRoom = outside; // outside is default room at the beginning
     }
-    
+
     /*
     * Checks if the game is still running or not. 
     * The finished boolean is default false, and the loop will continue
     * with parsing input commands until the boolean is true. 
-    */
+     */
     public void play() {
         printWelcome();
 
@@ -86,7 +94,7 @@ public class Game {
     // Quit command method.
     private boolean quit(Command command) {
         boolean hasEnded = false; // default the boolean is false until true.
-        
+
         // If the quit command has a second word, it gives a an error. 
         if (command.hasSecondWord()) {
             System.out.println("Quit doesn't need a second command.");
@@ -118,7 +126,7 @@ public class Game {
             System.out.println("The commandword doesn't exist.");
             return false;
         }
-        
+
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
@@ -142,7 +150,7 @@ public class Game {
     /*
     * Go room method has a command argument used to access 
     * the second commandword by direction <go> <room>.
-    */
+     */
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -157,7 +165,7 @@ public class Game {
         /*
         * If next room doesn't exist, print fail, else set currentRoom equal to new room 
         * and automatically check contents of container. 
-        */
+         */
         if (nextRoom == null) {
             System.out.println("The direction doesn't exist.");
         } else {
@@ -169,40 +177,45 @@ public class Game {
 
     // Take command method.
     public void pickUpGarbage(Command command) {
-        if (!command.hasSecondWord()) {
+        if (!command.hasSecondWord()) { // Does the command even have a second command
             System.out.println("Take what?");
             return;
         }
 
+        // String that points at the current second word
         String garbageName = command.getSecondWord();
 
-        // If container is already empty when take command is executed, print item doesn't exist
-        if (currentRoom.getContainer().isEmpty()) {
-            System.out.println("Garbage " + garbageName + " doesn't exist.");
-        }
+        // Boolean used to set the garbage item to real or not
+        boolean isGarbageItemReal = false;
 
-        for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-            // If the given second command word is equal to a name in the container list, add item to inventory
-            if (garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName()) && inventory.getInventory().size() < 2) {
-                
-                // If the item you take is already correct sorted, you substract the same amount of garbage points
-                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
-                    startPoint -= currentRoom.getContainer().get(i).getPoints();
+        // If inventory size contains less than two elements, continue
+        if (inventory.getInventory().size() < 2) {
+
+            for (int i = 0; i < currentRoom.getContainer().size(); i++) {
+
+                // If the given second command word is equal to a name in the container list, add item to inventory.
+                if (garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName())) {
+                    isGarbageItemReal = true;
+
+                    // If the item you take is already correct sorted, you substract the same amount of garbage points.
+                    if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                        startPoint -= currentRoom.getContainer().get(i).getPoints();
+                    }
+
+                    inventory.getInventory().add(currentRoom.getContainer().get(i));
+                    System.out.println(currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.");
+                    currentRoom.getContainer().remove(i);
                 }
-
-                inventory.getInventory().add(currentRoom.getContainer().get(i));
-                System.out.println(currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.");
-                currentRoom.getContainer().remove(i);
-
-                // If container list has more or equal two items, your hands are full
-            } else if (inventory.getInventory().size() >= 2) {
-                System.out.println("Your hands are full!");
-
-                // If the given second command word is not equal to a name in the container list
-            } else if (!garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName())) {
-                System.out.println("Garbage " + garbageName + " doesn't exist.");
-                break;
             }
+
+            // If item doesn't exist, print.
+            if (isGarbageItemReal == false) {
+                System.out.println("Garbage " + garbageName + " doesn't exist.");
+            }
+
+        } else {
+            // If container list has more than two items, your hands are full.
+            System.out.println("Your hands are full!");
         }
 
     }
@@ -216,20 +229,19 @@ public class Game {
 
         String garbageName = command.getSecondWord();
 
-        // If inventory is already empty when take command is executed, print item doesn't exist.
-        if (inventory.getInventory().isEmpty()) {
-            System.out.println("Garbage " + garbageName + " doesn't exist.");
-        }
+        // Boolean used to set the garbage item to real or not
+        boolean isGarbageItemReal = false;
 
         for (int i = 0; i < inventory.getInventory().size(); i++) {
-            
-            // If the given second command word is equal to a name in the nventory list, add item to container.
+
+            // If the given second command word is equal to a name in the inventory list, add item to container.
             if (garbageName.equalsIgnoreCase(inventory.getInventory().get(i).getGarbageName())) {
-                
+                isGarbageItemReal = true;
+
                 /*
-                * If the item you drop is already correct sorted, you substract the same amount of garbage points,
+                * If the item you drop is correct sorted, you add  amount of garbage points to sum,
                 * and print out a good fact, if not, bad fact.
-                */
+                 */
                 if (inventory.getInventory().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
                     startPoint += inventory.getInventory().get(i).getPoints();
                     currentRoom.getGoodFact();
@@ -240,20 +252,19 @@ public class Game {
                 currentRoom.getContainer().add(inventory.getInventory().get(i));
                 System.out.println(inventory.getInventory().get(i).getGarbageName() + " has been added to " + currentRoom.typeOfContainer() + " container.");
                 inventory.getInventory().remove(i);
-                
-                // If the given second command word is not equal to a name in the inventory list
-            } else if (!garbageName.equalsIgnoreCase(inventory.getInventory().get(i).getGarbageName())) {
-                System.out.println("Garbage " + garbageName + " doesn't exist.");
-                break;
             }
         }
 
+        // If item doesn't exist, print.
+        if (isGarbageItemReal == false) {
+            System.out.println("Garbage " + garbageName + " doesn't exist.");
+        }
     }
 
     /*
     * Checks if container in room has been automatically checked for correct sorted
     * garbage items, and sums up the players points. 
-    */
+     */
     public void checkContainerPoints() {
         if (currentRoom.hasRoomBeenChecked() == false) { // If hasn't checked, run loop and if statement.
             for (int i = 0; i < currentRoom.getContainer().size(); i++) {
@@ -275,7 +286,7 @@ public class Game {
         } else if (startPoint <= 10) {
             rank = "semi-professional. You are skilled. Try again";
         } else if (startPoint == 12) {
-            rank = "recyclehero. You know your stuff.";
+            rank = "recyclehero. You know your stuff";
         }
         return rank;
     }
@@ -283,7 +294,7 @@ public class Game {
     /*
     * If the container in the room isn't empty, iterate through container and print out contents.
     * else print out that the specific container is empty. 
-    */
+     */
     public void printContainer() {
         if (!currentRoom.getContainer().isEmpty()) {
             System.out.print("Contents of " + currentRoom.typeOfContainer() + " container: ");
@@ -299,7 +310,7 @@ public class Game {
     // Print welcome strings.
     private void printWelcome() {
         // Call create username method from Points class, before welcome printing. 
-        points.createUsername(); 
+        points.createUsername();
 
         System.out.println("Welcome to RecycleHero, " + points.getUsername() + "!");
         System.out.println("You're an employee at a recycling station and just arrived for work.");

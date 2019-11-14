@@ -28,7 +28,7 @@ public class Garbage {
         String typeOfGarbage = "";
         switch (typeNum) {
             case 0:
-                typeOfGarbage = "Battery";
+                typeOfGarbage = "Chemicals";
                 break;
             case 1:
                 typeOfGarbage = "Plastic";
