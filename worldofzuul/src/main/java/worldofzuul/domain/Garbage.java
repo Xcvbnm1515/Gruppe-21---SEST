@@ -5,11 +5,13 @@ public class Garbage {
     private int points;
     private int typeNum;
     private String garbageName;
-
-    public Garbage(String garbageName, int typeNum, int points) {
+    private String imagePath; 
+    
+    public Garbage(String garbageName, int typeNum, int points, String imagePath) {
         this.garbageName = garbageName;
         this.typeNum = typeNum;
         this.points = points;
+        this.imagePath = imagePath;
     }
 
     public void setPoints(int points) {
@@ -53,5 +55,13 @@ public class Garbage {
     public String getNameAdmin() {
         return "Garbage item: " + garbageName + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
     }
+    
+    @Override /**** EDITED ****/
+    public String toString() {
+        return garbageName;
+    }
 
+    public String getImagePath() {
+        return imagePath;
+    }
 }

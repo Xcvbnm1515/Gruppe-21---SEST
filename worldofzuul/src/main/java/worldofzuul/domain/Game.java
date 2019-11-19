@@ -2,6 +2,7 @@ package worldofzuul.domain;
 
 import java.io.File;
 import worldofzuul.dataaccess.Points;
+import worldofzuul.presentation.PrimaryController;
 
 public class Game {
 
@@ -25,18 +26,18 @@ public class Game {
     private void createRooms() {
         // Instansiate garbage objects.
         Garbage grb1, grb2, grb3, grb4, grb5, grb6, grb7, grb8, grb9, grb10, grb11, grb12;
-        grb1 = new Garbage("Spraycan", 0, 1);
-        grb2 = new Garbage("Batteries", 0, 1);
-        grb3 = new Garbage("Paint", 0, 1);
-        grb4 = new Garbage("ThermosMug", 1, 1);
-        grb5 = new Garbage("Lunchbox", 1, 1);
-        grb6 = new Garbage("CokeBottle", 1, 1);
-        grb7 = new Garbage("Can", 2, 1);
-        grb8 = new Garbage("ThermosFlask", 2, 1);
-        grb9 = new Garbage("Key", 2, 1);
-        grb10 = new Garbage("WineBottle", 3, 1);
-        grb11 = new Garbage("Mirror", 3, 1);
-        grb12 = new Garbage("PerfumeContainer", 3, 1);
+        grb1 = new Garbage("Spraycan", 0, 1, "Resources/Images/Garbage/spraycan.png");
+        grb2 = new Garbage("Batteries", 0, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb3 = new Garbage("Paint", 0, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb4 = new Garbage("ThermosMug", 1, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb5 = new Garbage("Lunchbox", 1, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb6 = new Garbage("CokeBottle", 1, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb7 = new Garbage("Can", 2, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb8 = new Garbage("ThermosFlask", 2, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb9 = new Garbage("Key", 2, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb10 = new Garbage("WineBottle", 3, 1, "Resources/Images/Garbage/spraycan.png");
+        grb11 = new Garbage("Mirror", 3, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb12 = new Garbage("PerfumeContainer", 3, 1, "Resources/Images/Garbage/colaflaske.png");
 
         // Instansiate room objects.
         outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
@@ -132,11 +133,11 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.TAKE) {
-            pickUpGarbage(command);
+            //pickUpGarbage(command);
         } else if (commandWord == CommandWord.DROP) {
-            dropGarbage(command);
+            //dropGarbage(command);
         } else if (commandWord == CommandWord.INVENTORY) {
-            inventory.printInventory();
+            //inventory.printInventory();
         } else if (commandWord == CommandWord.LOOK) {
             printContainer();
         } else if (commandWord == CommandWord.SCORE) {
@@ -174,14 +175,16 @@ public class Game {
     }
 
     // Take command method.
-    public void pickUpGarbage(Command command) {
+    public void pickUpGarbage(String item) { /**** EDITED ****/
+        /*
         if (!command.hasSecondWord()) { // Does the command even have a second command
             System.out.println("Take what?");
             return;
         }
+        */
 
         // String that points at the current second word
-        String garbageName = command.getSecondWord();
+        String garbageName = item;
 
         // Boolean used to set the garbage item to real or not
         boolean isGarbageItemReal = false;
@@ -219,13 +222,15 @@ public class Game {
     }
 
     // Drop command method.
-    public void dropGarbage(Command command) {
+    public void dropGarbage(String item) { /**** EDITED ****/
+        /*
         if (!command.hasSecondWord()) {
             System.out.println("Drop what?");
             return;
         }
+        */
 
-        String garbageName = command.getSecondWord();
+        String garbageName = item;
 
         // Boolean used to set the garbage item to real or not
         boolean isGarbageItemReal = false;
@@ -328,5 +333,9 @@ public class Game {
         System.out.println("Inventory: show item(s) in your hands.");
         System.out.println("Look: look inside containers.");
         System.out.println("Score: see your current score.");
+    }
+    
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 }

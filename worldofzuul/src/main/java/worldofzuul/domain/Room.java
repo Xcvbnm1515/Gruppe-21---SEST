@@ -1,17 +1,18 @@
 package worldofzuul.domain;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Room {
     // Declare variables and instances
     private String description; // Room which describes what room player is in.
     private HashMap<String, Room> exits; // <Key><value> pair, where 'index' is string based.
-    private ArrayList<Garbage> container; // List that contains container items.
+    private ObservableList container; // List that contains container items.  /// edited
     private int typeOfContainer; // Type of container in numeric (later to string - switch case).
     private File factList; // Used to gather the file of facts for each current room.
     private String[] copyFacts; // Array of string object that 'clones' the file contents.
@@ -24,7 +25,7 @@ public class Room {
     public Room(String description, int typeOfContainer, File factList) {
         this.description = description;
         exits = new HashMap<String, Room>();
-        container = new ArrayList<Garbage>();
+        container = FXCollections.observableArrayList(); // edited
         this.typeOfContainer = typeOfContainer;
         this.factList = factList;
         copyFacts = new String[10];
@@ -77,7 +78,7 @@ public class Room {
     }
 
     // Accessor
-    public ArrayList<Garbage> getContainer() {
+    public ObservableList<Garbage> getContainer() {
         return container;
     }
 
