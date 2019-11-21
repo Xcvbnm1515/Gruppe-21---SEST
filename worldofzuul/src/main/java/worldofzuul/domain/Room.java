@@ -140,4 +140,7 @@ public class Room {
             System.out.println("File not found.");
         }
     }
+       public HashMap<String, Room> getExits(){
+        return exits;
+       }
 }

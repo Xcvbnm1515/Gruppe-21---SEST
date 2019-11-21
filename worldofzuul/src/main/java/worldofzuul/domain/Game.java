@@ -12,6 +12,7 @@ public class Game {
     private Room outside; // Outside room is a classvariable due to scope.
     private Points points; // Access and instantiate points instance.
     private int startPoint; // Used to 'save' number of points given at start.
+    private String textAreaInfo; // Used to 'hold' string of text
 
     // Call createRooms method, and instansiate all attributes. 
     public Game() {
@@ -86,30 +87,21 @@ public class Game {
             finished = processCommand(command);
         }
 
-        System.out.println("\nThank you for playing RecycleHero!");
+        textAreaInfo = "\nThank you for playing RecycleHero!";
     }
 
     // Quit command method.
-    private boolean quit(Command command) {
-        boolean hasEnded = false; // default the boolean is false until true.
-
-        // If the quit command has a second word, it gives a an error. 
-        if (command.hasSecondWord()) {
-            System.out.println("Quit doesn't need a second command.");
-            return hasEnded;
-        } else {
-            // If player is at outside room, the player is able to quit, else false. 
+    public void quit() {
+    
+        // If player is at outside room, the player is able to quit.
             if (currentRoom.equals(outside)) {
-                System.out.println("Your final number of points is: " + startPoint + "!");
-                System.out.println("Your rank is " + getPlayerRank() + ".");
-                hasEnded = true;
+                textAreaInfo = "Your final number of points is: " + startPoint + "!";
+                textAreaInfo = "Your rank is " + getPlayerRank() + ".";
+              
 
                 points.writePointsToFile(points.getUsername(), startPoint);
                 points.readPointsFromFile();
-            } else {
-                System.out.println("You have to be in front of the staff room.");
-            }
-            return hasEnded;
+            
         }
     }
 
@@ -121,16 +113,16 @@ public class Game {
 
         // Below is a list of all the available commands and their functions 
         if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("The commandword doesn't exist.");
+            textAreaInfo = "The commandword doesn't exist.";
             return false;
         }
 
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+          //  goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
+           // wantToQuit = quit(command);
         } else if (commandWord == CommandWord.TAKE) {
             //pickUpGarbage(command);
         } else if (commandWord == CommandWord.DROP) {
@@ -149,14 +141,10 @@ public class Game {
     * Go room method has a command argument used to access 
     * the second commandword by direction <go> <room>.
      */
-    private void goRoom(Command command) {
-        if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
+    public void goRoom (String item) {
 
         // Direction 'saves' second command word from user input.
-        String direction = command.getSecondWord();
+        String direction = item; 
         // Room type variable points at the exit of currentRoom with direction string.
         Room nextRoom = currentRoom.getExit(direction);
 
@@ -165,22 +153,16 @@ public class Game {
         * and automatically check contents of container. 
          */
         if (nextRoom == null) {
-            System.out.println("The direction doesn't exist.");
+            textAreaInfo = "The direction doesn't exist.";
         } else {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            textAreaInfo = currentRoom.getLongDescription();
             checkContainerPoints();
         }
     }
 
     // Take command method.
-    public void pickUpGarbage(String item) { /**** EDITED ****/
-        /*
-        if (!command.hasSecondWord()) { // Does the command even have a second command
-            System.out.println("Take what?");
-            return;
-        }
-        */
+    public void pickUpGarbage(String item) {
 
         // String that points at the current second word
         String garbageName = item;
@@ -203,32 +185,25 @@ public class Game {
                     }
 
                     inventory.getInventory().add(currentRoom.getContainer().get(i));
-                    System.out.println(currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.");
+                    textAreaInfo = currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.";
                     currentRoom.getContainer().remove(i);
                 }
             }
 
             // If item doesn't exist, print.
             if (isGarbageItemReal == false) {
-                System.out.println("Garbage " + garbageName + " doesn't exist.");
+                textAreaInfo = "Garbage " + garbageName + " doesn't exist.";
             }
 
         } else {
             // If container list has more than two items, your hands are full.
-            System.out.println("Your hands are full!");
+            textAreaInfo = "Your hands are full!";
         }
 
     }
 
     // Drop command method.
-    public void dropGarbage(String item) { /**** EDITED ****/
-        /*
-        if (!command.hasSecondWord()) {
-            System.out.println("Drop what?");
-            return;
-        }
-        */
-
+    public void dropGarbage(String item) { 
         String garbageName = item;
 
         // Boolean used to set the garbage item to real or not
@@ -252,14 +227,14 @@ public class Game {
                 }
 
                 currentRoom.getContainer().add(inventory.getInventory().get(i));
-                System.out.println(inventory.getInventory().get(i).getGarbageName() + " has been added to " + currentRoom.typeOfContainer() + " container.");
+                textAreaInfo = inventory.getInventory().get(i).getGarbageName() + " has been added to " + currentRoom.typeOfContainer() + " container.";
                 inventory.getInventory().remove(i);
             }
         }
 
         // If item doesn't exist, print.
         if (isGarbageItemReal == false) {
-            System.out.println("Garbage " + garbageName + " doesn't exist.");
+            textAreaInfo = "Garbage " + garbageName + " doesn't exist.";
         }
     }
 
@@ -334,7 +309,13 @@ public class Game {
         System.out.println("Score: see your current score.");
     }
     
+    // Accesor to get current room
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+    
+    // Accesor to get strings of info
+    public String getTextAreaInfo() {
+        return textAreaInfo;
     }
 }

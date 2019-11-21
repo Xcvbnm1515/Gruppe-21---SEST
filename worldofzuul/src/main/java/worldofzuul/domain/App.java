@@ -31,8 +31,6 @@ public class App extends Application {
 
     public static void load(String[] args) {
         launch();
-        Game game = new Game();
-        game.play();
     }
 
 }
