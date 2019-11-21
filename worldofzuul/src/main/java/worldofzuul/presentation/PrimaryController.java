@@ -17,16 +17,11 @@ import worldofzuul.domain.Inventory;
 public class PrimaryController implements Initializable {
 
     // Java FXML attributes
-    @FXML
-    private ListView<Garbage> lvContainer;
-    @FXML
-    private ListView<Garbage> lvInventory;
-    @FXML
-    private Button btnTake;
-    @FXML
-    private Button btnDrop;
-    @FXML
-    private ImageView imgView;
+    @FXML private ListView<Garbage> lvContainer;
+    @FXML private ListView<Garbage> lvInventory;
+    @FXML private Button btnTake;
+    @FXML private Button btnDrop;
+    @FXML private ImageView imgViewCharacter;
 
     private Game game;
     private File file;
@@ -40,13 +35,10 @@ public class PrimaryController implements Initializable {
         lvContainer.setItems(game.getCurrentRoom().getContainer());
         lvInventory.setItems(Inventory.getInventory());
 
-        /*
-        for (int i = 0; i < game.getCurrentRoom().getContainer().size(); i++) {
-            file = new File(game.getCurrentRoom().getContainer().get(i).getImagePath());
-            image = new Image(file.toURI().toString());
-            imgView.setImage(image);
-        }
-        */
+        // Set character image
+        file = new File("Resources/Images/character.png");
+        image = new Image(file.toURI().toString());
+        imgViewCharacter.setImage(image);
     }
 
     /* 

@@ -47,7 +47,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imgView" fitHeight="112.0" fitWidth="121.0" layoutX="284.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="67.0" layoutX="306.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
             <VBox layoutX="36.0" layoutY="39.0" prefHeight="179.0" prefWidth="223.0">
                <children>
                   <Label text="Container" />

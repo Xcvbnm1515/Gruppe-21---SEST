@@ -2,7 +2,6 @@ package worldofzuul.domain;
 
 import java.io.File;
 import worldofzuul.dataaccess.Points;
-import worldofzuul.presentation.PrimaryController;
 
 public class Game {
 
