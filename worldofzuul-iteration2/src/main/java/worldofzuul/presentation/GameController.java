@@ -39,6 +39,7 @@ public class GameController implements Initializable {
     private Game game;
     private File file;
     private Image image;
+    @FXML private Label lbScore;
 
     // Instantiate game objects and initialize listviews. 
     @Override
@@ -67,6 +68,7 @@ public class GameController implements Initializable {
     private void takeGarbage(ActionEvent event) {
         game.pickUpGarbage(lvContainer.getSelectionModel().getSelectedItem().getGarbageName());
         txtArea.setText(game.getTextAreaInfo());
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     /* 
@@ -77,6 +79,7 @@ public class GameController implements Initializable {
     private void dropGarbage(ActionEvent event) {
         game.dropGarbage(lvInventory.getSelectionModel().getSelectedItem().getGarbageName());
         txtArea.setText(game.getTextAreaInfo());
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     /*
@@ -100,7 +103,7 @@ public class GameController implements Initializable {
         lbContainer.setText(game.getCurrentRoom().typeOfContainer());
         txtArea.setText(game.getTextAreaInfo());
         hideExitsIfNecessary();
-        
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     @FXML
@@ -147,5 +150,5 @@ public class GameController implements Initializable {
     private void sendToEnd() throws IOException {
         App.setRoot("end");
         
-    }
+    }  
 }
