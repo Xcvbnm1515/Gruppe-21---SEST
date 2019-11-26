@@ -26,7 +26,12 @@
             <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#goSouth" text="South" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="98.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox prefHeight="83.0" prefWidth="88.0">
+                     <children>
+                        <Label fx:id="txtUsername" text="Username" />
+                        <ImageView fitHeight="84.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
                   <VBox alignment="CENTER">
                      <children>
                         <Label text="Inventory" />

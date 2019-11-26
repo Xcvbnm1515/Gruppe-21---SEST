@@ -1,6 +1,7 @@
 package worldofzuul.presentation;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import worldofzuul.dataaccess.Points;
+import worldofzuul.domain.App;
 import worldofzuul.domain.Game;
 import worldofzuul.domain.Garbage;
 import worldofzuul.domain.Inventory;
@@ -31,6 +34,7 @@ public class GameController implements Initializable {
     @FXML private Button btnQuit;
     @FXML private Label lbContainer;
     @FXML private TextArea txtArea;
+    @FXML private Label txtUsername;
     
     private Game game;
     private File file;
@@ -45,6 +49,7 @@ public class GameController implements Initializable {
         lvInventory.setItems(Inventory.getInventory()); // Set current inventory contents
         lbContainer.setText(game.getCurrentRoom().typeOfContainer()); // Set current type of container string
         txtArea.setText(game.getTextAreaInfo()); // Set current textarea text
+        txtUsername.setText(Points.getUsername());
         hideExitsIfNecessary();
         
         // Set character image
@@ -135,8 +140,12 @@ public class GameController implements Initializable {
 
     // Quit game
     @FXML
-    private void quitGame(ActionEvent event) {
-        game.quit();
-        txtArea.setText(game.getTextAreaInfo());
+    private void quitGame(ActionEvent event) throws IOException {
+       game.quit();
+       sendToEnd();
+    }
+    private void sendToEnd() throws IOException {
+        App.setRoot("end");
+        
     }
 }

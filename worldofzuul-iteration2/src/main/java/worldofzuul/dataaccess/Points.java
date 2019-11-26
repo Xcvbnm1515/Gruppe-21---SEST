@@ -11,7 +11,7 @@ public class Points {
 
     // Declare variable types and names
     private File pointsFile;
-    private String username;
+    private static String username;
     private List pointsList;
     private int startPoint;
 
@@ -28,16 +28,13 @@ public class Points {
     }
 
     // Accesor method for username (incapsulation)
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
     
     // Create a username fo the game
-    public String createUsername() {
-        Scanner myScanner = new Scanner(System.in); // Scanner reader 
-        System.out.print("Type your username: ");
-        username = myScanner.nextLine();
-        return username;
+    public String setUsername(String username) {
+        return this.username = username;
     }
 
     // Read scores from points file

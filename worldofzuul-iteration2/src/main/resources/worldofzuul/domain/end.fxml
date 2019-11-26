@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.EndController">
+   <children>
+      <ImageView fx:id="imgViewLogo" fitHeight="155.0" fitWidth="200.0" layoutX="280.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="txtRank" layoutX="245.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hey Dude good job winning the game" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <VBox alignment="CENTER" layoutX="293.0" layoutY="337.0" prefHeight="55.0" prefWidth="174.0">
+         <children>
+            <Label text="Leaderboard" />
+            <ListView fx:id="lvScore" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

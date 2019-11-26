@@ -79,7 +79,7 @@ public class Game {
             textAreaInfo = "Your final number of points is: " + startPoint + "!";
             textAreaInfo = "Your rank is " + getPlayerRank() + ".";
 
-            points.writePointsToFile(points.getUsername(), startPoint);
+            points.writePointsToFile(Points.getUsername(), startPoint);
             points.readPointsFromFile();
 
         }
@@ -211,13 +211,14 @@ public class Game {
 
     // Print welcome strings.
     private void printWelcome() {
-        // Call create username method from Points class, before welcome printing. 
-        points.createUsername();
-
         System.out.println("Welcome to RecycleHero, " + points.getUsername() + "!");
         System.out.println("You're an employee at a recycling station and just arrived for work.");
         System.out.println("Your job is to sort and collect the garbage that are littering on the ground.");
         System.out.println(currentRoom.getLongDescription());
+    }
+    
+    public void createUsername(String username) {
+        points.setUsername(username);
     }
 
     // Accesor to get current room
