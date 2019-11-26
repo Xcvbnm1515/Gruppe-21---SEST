@@ -9,8 +9,7 @@ public class Game {
     private Room currentRoom; // Holds current room object.
     private Inventory inventory; // Access and instantiate inventory instance.
     private Room outside; // Outside room is a classvariable due to scope.
-    private Points points; // Access and instantiate points instance.
-    private int startPoint; // Used to 'save' number of points given at start.
+    private Points points; // Access and instantiate points instance
     private String textAreaInfo; // Used to 'hold' string of text
 
     // Call createRooms method, and instansiate all attributes. 
@@ -18,7 +17,6 @@ public class Game {
         createRooms();
         inventory = new Inventory();
         points = new Points();
-        startPoint = points.getStartPoint();
     }
 
     private void createRooms() {
@@ -76,10 +74,10 @@ public class Game {
 
         // If player is at outside room, the player is able to quit.
         if (currentRoom.equals(outside)) {
-            textAreaInfo = "Your final number of points is: " + startPoint + "!";
+            textAreaInfo = "Your final number of points is: " + Points.getStartPoint()+ "!";
             textAreaInfo = "Your rank is " + getPlayerRank() + ".";
 
-            points.writePointsToFile(points.getUsername(), startPoint);
+            points.writePointsToFile(points.getUsername(), Points.getStartPoint());
             points.readPointsFromFile();
 
         }
@@ -133,12 +131,15 @@ public class Game {
 
                 // If the item you take is already correct sorted, you substract the same amount of garbage points.
                 if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                    int startPoint = Points.getStartPoint();
                     startPoint -= currentRoom.getContainer().get(i).getPoints();
+                    Points.setStartPoint(startPoint);
                 }
-
+                
                 inventory.getInventory().add(currentRoom.getContainer().get(i));
                 textAreaInfo = currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.";
                 currentRoom.getContainer().remove(i);
+                
             }
         }
     }
@@ -161,7 +162,9 @@ public class Game {
                 * and print out a good fact, if not, bad fact.
                  */
                 if (inventory.getInventory().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                    int startPoint = Points.getStartPoint();
                     startPoint += inventory.getInventory().get(i).getPoints();
+                    Points.setStartPoint(startPoint);
                     currentRoom.getGoodFact();
                 } else {
                     currentRoom.getBadFact();
@@ -188,7 +191,9 @@ public class Game {
             for (int i = 0; i < currentRoom.getContainer().size(); i++) {
                 if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) { // Check if garbage type equal container type.
                     currentRoom.setHasRoomBeenChecked(true); // Set boolean to true after checked. 
+                    int startPoint = Points.getStartPoint();
                     startPoint += currentRoom.getContainer().get(i).getPoints(); // Sum points with the points of equal items in the container.
+                    Points.setStartPoint(startPoint);
                 }
             }
         }
@@ -197,13 +202,13 @@ public class Game {
     // Ranksystem that checks number of points in the end, and gives rank. 
     public String getPlayerRank() {
         String rank = "";
-        if (startPoint == 0) {
+        if (Points.getStartPoint() == 0) {
             rank = "beginner. Do some try research. Try again";
-        } else if (startPoint <= 5) {
+        } else if (Points.getStartPoint() <= 5) {
             rank = "amateur. You can do it better. Try again";
-        } else if (startPoint <= 10) {
+        } else if (Points.getStartPoint() <= 10) {
             rank = "semi-professional. You are skilled. Try again";
-        } else if (startPoint == 12) {
+        } else if (Points.getStartPoint() == 12) {
             rank = "recyclehero. You know your stuff";
         }
         return rank;
@@ -229,4 +234,5 @@ public class Game {
     public String getTextAreaInfo() {
         return textAreaInfo;
     }
+    
 }

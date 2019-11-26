@@ -13,7 +13,7 @@ public class Points {
     private File pointsFile;
     private String username;
     private List pointsList;
-    private int startPoint;
+    private static int startPoint;
 
     public Points() {
         // Creating instanes and make variables point a value
@@ -23,9 +23,14 @@ public class Points {
     }
 
     // Accesor method for startpoint (incapsulation)
-    public int getStartPoint() {
+    public static int getStartPoint() {
         return startPoint;
     }
+
+    public static void setStartPoint(int startPoint) {
+        Points.startPoint = startPoint;
+    }
+    
 
     // Accesor method for username (incapsulation)
     public String getUsername() {

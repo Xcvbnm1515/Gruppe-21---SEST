@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import worldofzuul.dataaccess.Points;
 import worldofzuul.domain.Game;
 import worldofzuul.domain.Garbage;
 import worldofzuul.domain.Inventory;
@@ -35,6 +37,7 @@ public class GameController implements Initializable {
     private Game game;
     private File file;
     private Image image;
+    @FXML private Label lbScore;
 
     // Instantiate game objects and initialize listviews. 
     @Override
@@ -62,6 +65,7 @@ public class GameController implements Initializable {
     private void takeGarbage(ActionEvent event) {
         game.pickUpGarbage(lvContainer.getSelectionModel().getSelectedItem().getGarbageName());
         txtArea.setText(game.getTextAreaInfo());
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     /* 
@@ -72,6 +76,7 @@ public class GameController implements Initializable {
     private void dropGarbage(ActionEvent event) {
         game.dropGarbage(lvInventory.getSelectionModel().getSelectedItem().getGarbageName());
         txtArea.setText(game.getTextAreaInfo());
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     /*
@@ -95,7 +100,7 @@ public class GameController implements Initializable {
         lbContainer.setText(game.getCurrentRoom().typeOfContainer());
         txtArea.setText(game.getTextAreaInfo());
         hideExitsIfNecessary();
-        
+        lbScore.setText("" + Points.getStartPoint());
     }
 
     @FXML
@@ -139,4 +144,10 @@ public class GameController implements Initializable {
         game.quit();
         txtArea.setText(game.getTextAreaInfo());
     }
+    
+        
+      
+   
+    
+      
 }
