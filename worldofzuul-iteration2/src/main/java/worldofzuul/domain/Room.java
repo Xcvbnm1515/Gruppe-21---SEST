@@ -32,12 +32,12 @@ public class Room {
         hasContainerBeenChecked = false; // Default container points check is false.
     }
     
-    // Accesor which returns fault from hasContainerBeenChecked.
+    // Get default room has been checked boolean false
     public boolean hasRoomBeenChecked() {
         return hasContainerBeenChecked;
     }
     
-    // Mutator which uses to set if room has been checked (TRUE)
+    // Set room has been checked to true if needed
     public boolean setHasRoomBeenChecked(boolean hasRoomBeenChecked) {
         return this.hasContainerBeenChecked = hasRoomBeenChecked;
     }
@@ -47,22 +47,22 @@ public class Room {
         exits.put(direction, neighbor);
     }
 
-    // Add garbage objects to a room 
+    // Set garbage objects to a room 
     public void setGarbage(Garbage garbage) {
         container.add(garbage);
     }
 
-    // Accessor  
+    // Get only what room the player is in
     public String getShortDescription() {
         return description;
     }
 
-    // Accessor 
+    // Get what room the player is in and available directions
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
 
-    // Accessor that returns command keys as a string 
+    // Returns directions in a room available to the player
     private String getExitString() {
         String returnString = "Directions:";
         Set<String> keys = exits.keySet();
@@ -72,22 +72,27 @@ public class Room {
         return returnString;
     }
 
-    // Mutator that gets the exit in a room 
+    // Gets specific exit in a room
     public Room getExit(String direction) {
         return exits.get(direction);
     }
 
-    // Accessor
+    // Get container list
     public ObservableList<Garbage> getContainer() {
         return container;
     }
 
-    // Accessor 
+    // Get file with facts
     public File getFactList() {
         return factList;
     }
+    
+    // Get exits from a room
+    public HashMap<String, Room> getExits(){
+        return exits;
+    }
 
-    // Accessor 
+    // Get type of container in integer
     public int getTypeOfContainer() { 
         return typeOfContainer;
     }
@@ -125,7 +130,7 @@ public class Room {
         System.out.println(copyFacts[5 + (int) (Math.random() * 5)]);
     }
 
-    // add facts from file to array of objects
+    // Add facts from file to array of objects
     public void addFactList() {
         try {
             Scanner myScanner = new Scanner(getFactList());
@@ -140,7 +145,4 @@ public class Room {
             System.out.println("File not found.");
         }
     }
-       public HashMap<String, Room> getExits(){
-        return exits;
-       }
 }

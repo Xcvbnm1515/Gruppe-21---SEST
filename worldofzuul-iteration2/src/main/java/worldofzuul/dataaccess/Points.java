@@ -18,30 +18,30 @@ public class Points {
     private static int startPoint;
 
     public Points() {
-        // Creating instanes and make variables point a value
+        // Creating instances and make startPoint point at a value
         pointsFile = new File("Resources/points.csv");
         pointsList = new ArrayList<String>();
         startPoint = 0;
     }
 
-    // Accesor method for startpoint (incapsulation)
+    // Static getter startPoint method available for all classes
     public static int getStartPoint() {
         return startPoint;
     }
 
-    public static void setStartPoint(int startPoint) {
-        Points.startPoint = startPoint;
+    // Static setter startPoint method available for all classes
+    public static int setStartPoint(int startPoint) {
+        return Points.startPoint = startPoint;
     }
     
-
-    // Accesor method for username (incapsulation)
+    // Static getter Username method available for all classes
     public static String getUsername() {
         return username;
     }
     
-    // Create a username fo the game
-    public String setUsername(String username) {
-        return this.username = username;
+    // Static setter Username method available for all classes
+    public static String setUsername(String username) {
+        return Points.username = username;
     }
 
     // Read scores from points file

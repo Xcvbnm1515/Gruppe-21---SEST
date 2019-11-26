@@ -22,18 +22,18 @@ public class Game {
     private void createRooms() {
         // Instansiate garbage objects.
         Garbage grb1, grb2, grb3, grb4, grb5, grb6, grb7, grb8, grb9, grb10, grb11, grb12;
-        grb1 = new Garbage("Spraycan", 0, 1, "Resources/Images/Garbage/spraycan.png");
-        grb2 = new Garbage("Batteries", 0, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb3 = new Garbage("Paint", 0, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb4 = new Garbage("ThermosMug", 1, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb5 = new Garbage("Lunchbox", 1, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb6 = new Garbage("CokeBottle", 1, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb7 = new Garbage("Can", 2, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb8 = new Garbage("ThermosFlask", 2, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb9 = new Garbage("Key", 2, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb10 = new Garbage("WineBottle", 3, 1, "Resources/Images/Garbage/spraycan.png");
-        grb11 = new Garbage("Mirror", 3, 1, "Resources/Images/Garbage/colaflaske.png");
-        grb12 = new Garbage("PerfumeContainer", 3, 1, "Resources/Images/Garbage/colaflaske.png");
+        grb1 = new Garbage("Spraycan", 0, 1, "spraycan.png");
+        grb2 = new Garbage("Batteries", 0, 1, "battery.png");
+        grb3 = new Garbage("Paint", 0, 1, "paint.png");
+        grb4 = new Garbage("ThermosMug", 1, 1, "thermosflask.png");
+        grb5 = new Garbage("Lunchbox", 1, 1, "lunchbox.png");
+        grb6 = new Garbage("CokeBottle", 1, 1, "cokebottle.png");
+        grb7 = new Garbage("Can", 2, 1, "can.png");
+        grb8 = new Garbage("ThermosFlask", 2, 1, "thermosflask.png");
+        grb9 = new Garbage("Key", 2, 1, "key.png");
+        grb10 = new Garbage("WineBottle", 3, 1, "winebottle.png");
+        grb11 = new Garbage("Mirror", 3, 1, "mirror.png");
+        grb12 = new Garbage("PerfumeContainer", 3, 1, "perfume.png");
 
         // Instansiate room objects.
         outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/BatteryFacts.csv"));
@@ -69,45 +69,37 @@ public class Game {
         currentRoom = outside; // outside is default room at the beginning
     }
 
-    // Quit command method.
-    public void quit() {
-
-        // If player is at outside room, the player is able to quit.
+    // Quit command method that returns boolean.
+    public Boolean quit() {
+        boolean hasEnded = false; // default false hasEnded
+        
+        // If player is at outside room, the player is able to quit, and boolean is true.
         if (currentRoom.equals(outside)) {
+            hasEnded = true;
             textAreaInfo = "Your final number of points is: " + Points.getStartPoint()+ "!";
             textAreaInfo = "Your rank is " + getPlayerRank() + ".";
             points.writePointsToFile(Points.getUsername(), Points.getStartPoint());
+        } else {
+            textAreaInfo = "You have to be infront of the staff room.";
         }
+        
+        return hasEnded;
     }
 
-    /*
-    * Go room method has a command argument used to access 
-    * the second commandword by direction <go> <room>.
-     */
-    public void goRoom(String item) {
-
-        // Direction 'saves' second command word from user input.
-        String direction = item;
-        // Room type variable points at the exit of currentRoom with direction string.
-        Room nextRoom = currentRoom.getExit(direction);
-
-        /*
-        * If next room doesn't exist, print fail, else set currentRoom equal to new room 
-        * and automatically check contents of container. 
-         */
-        if (nextRoom == null) {
-            textAreaInfo = "The direction doesn't exist.";
-        } else {
-            currentRoom = nextRoom;
-            textAreaInfo = currentRoom.getLongDescription();
-            checkContainerPoints();
-        }
+    // Go room with a exit as parameter
+    public void goRoom(String exit) {
+        // String direction points at parameter
+        String direction = exit;
+        
+        // Sets currentRoom based on what direction as argument has been given
+        currentRoom = currentRoom.getExit(direction);
+        
+        // Eventually check for points in container
+        checkContainerPoints();
     }
 
     // Take command method.
     public void pickUpGarbage(String item) {
-
-        // String that points at the current second word
         String garbageName = item;
 
         // Boolean used to set the garbage item to real or not
@@ -122,7 +114,7 @@ public class Game {
         
         for (int i = 0; i < currentRoom.getContainer().size(); i++) {
 
-            // If the given second command word is equal to a name in the container list, add item to inventory.
+            // If the given item name is equal to a name in the container list, add item to inventory.
             if (garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName())) {
                 isGarbageItemReal = true;
 
@@ -150,7 +142,7 @@ public class Game {
 
         for (int i = 0; i < inventory.getInventory().size(); i++) {
 
-            // If the given second command word is equal to a name in the inventory list, add item to container.
+            // If the given item name is equal to a name in the inventory list, add item to container.
             if (garbageName.equalsIgnoreCase(inventory.getInventory().get(i).getGarbageName())) {
                 isGarbageItemReal = true;
 
@@ -211,24 +203,24 @@ public class Game {
         return rank;
     }
 
-    // Print welcome strings.
+    // Print welcome strings
     private void printWelcome() {
-        System.out.println("Welcome to RecycleHero, " + points.getUsername() + "!");
+        System.out.println("Welcome to RecycleHero, " + Points.getUsername() + "!");
         System.out.println("You're an employee at a recycling station and just arrived for work.");
         System.out.println("Your job is to sort and collect the garbage that are littering on the ground.");
-        System.out.println(currentRoom.getLongDescription());
     }
     
+    // Used to create a username 
     public void createUsername(String username) {
-        points.setUsername(username);
+        Points.setUsername(username);
     }
 
-    // Accesor to get current room
+    // Get current room the player is in
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
-    // Accesor to get strings of info
+    // Get strings of info from all kinds of methods
     public static String getTextAreaInfo() {
         return textAreaInfo;
     }

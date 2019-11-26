@@ -1,11 +1,13 @@
 worldofzuul\presentation\LoginController.class
 worldofzuul\dataaccess\Points.class
 worldofzuul\presentation\EndController.class
+worldofzuul\presentation\GameController$1.class
 worldofzuul\domain\Garbage.class
 worldofzuul\domain\Room.class
+worldofzuul\presentation\GameController$1$1.class
 worldofzuul\domain\Game.class
 worldofzuul\presentation\GameController.class
-worldofzuul\domain\Main.class
 module-info.class
+worldofzuul\presentation\App.class
 worldofzuul\domain\Inventory.class
-worldofzuul\domain\App.class
+worldofzuul\presentation\Main.class

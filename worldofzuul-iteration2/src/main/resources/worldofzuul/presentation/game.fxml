@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.PrimaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
    <top>
       <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#goNorth" text="North" BorderPane.alignment="CENTER" />
    </top>
@@ -26,7 +26,12 @@
             <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#goSouth" text="South" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="98.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox prefHeight="83.0" prefWidth="88.0">
+                     <children>
+                        <Label fx:id="txtUsername" text="Username" />
+                        <ImageView fitHeight="84.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
                   <VBox alignment="CENTER">
                      <children>
                         <Label text="Inventory" />
@@ -40,6 +45,8 @@
                         <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
                      </children>
                   </VBox>
+                  <Label text="Score: " />
+                  <Label fx:id="lbScore" prefHeight="17.0" prefWidth="78.0" />
                </children>
             </HBox>
             <TextArea fx:id="txtArea" prefHeight="200.0" prefWidth="200.0" />

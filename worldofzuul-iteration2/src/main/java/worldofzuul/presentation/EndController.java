@@ -31,8 +31,12 @@ public class EndController implements Initializable {
         file = new File("Resources/Images/Logo/logo.png");
         image = new Image(file.toURI().toString());
         imgViewLogo.setImage(image);
-        lvScore.setItems(points.readPointsFromFile());
+
+        // Set player rank text
         txtRank.setText(Game.getTextAreaInfo());
+        
+        // Set listview scoreboard
+        lvScore.setItems(points.readPointsFromFile());
     }
     
 }

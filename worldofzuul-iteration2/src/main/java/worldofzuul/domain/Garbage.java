@@ -2,28 +2,32 @@ package worldofzuul.domain;
 
 public class Garbage {
 
+    private String garbageName;
     private int points;
     private int typeNum;
-    private String garbageName;
-    private String imagePath; 
+    private String imageFile; 
     
     public Garbage(String garbageName, int typeNum, int points, String imagePath) {
         this.garbageName = garbageName;
         this.typeNum = typeNum;
         this.points = points;
-        this.imagePath = imagePath;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+        this.imageFile = imagePath;
     }
 
     public int getPoints() {
         return points;
     }
+    
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
     public int getTypeNum() {
         return typeNum;
+    }
+    
+    public String getImageFile() {
+        return imageFile;
     }
 
     public String typeOfGarbage(int type) {
@@ -56,12 +60,8 @@ public class Garbage {
         return "Garbage item: " + garbageName + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
     }
     
-    @Override /**** EDITED ****/
+    @Override 
     public String toString() {
         return garbageName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
     }
 }

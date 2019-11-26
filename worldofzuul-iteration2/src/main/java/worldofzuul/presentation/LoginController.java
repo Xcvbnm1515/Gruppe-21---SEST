@@ -7,12 +7,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import worldofzuul.domain.App;
 import worldofzuul.domain.Game;
 
 public class LoginController implements Initializable {
@@ -35,10 +33,10 @@ public class LoginController implements Initializable {
         imgViewLogo.setImage(image);
     }    
     
+    // When start button is clicked, forward player to game stage
     @FXML
     private void startGame(ActionEvent event) throws IOException {
         game.createUsername(txtUsername.getText());
         App.setRoot("game");
     }
-
 }
