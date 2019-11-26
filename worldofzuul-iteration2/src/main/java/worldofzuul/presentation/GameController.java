@@ -56,8 +56,7 @@ public class GameController implements Initializable {
         // Set character image
         file = new File("Resources/Images/character.png");
         image = new Image(file.toURI().toString());
-        imgViewCharacter.setImage(image);
-        
+        imgViewCharacter.setImage(image); 
     }
 
     /* 

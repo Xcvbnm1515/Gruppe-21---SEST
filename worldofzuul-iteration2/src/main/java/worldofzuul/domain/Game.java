@@ -10,7 +10,7 @@ public class Game {
     private Inventory inventory; // Access and instantiate inventory instance.
     private Room outside; // Outside room is a classvariable due to scope.
     private Points points; // Access and instantiate points instance
-    private String textAreaInfo; // Used to 'hold' string of text
+    private static String textAreaInfo; // Used to 'hold' string of text
 
     // Call createRooms method, and instansiate all attributes. 
     public Game() {
@@ -77,8 +77,6 @@ public class Game {
             textAreaInfo = "Your final number of points is: " + Points.getStartPoint()+ "!";
             textAreaInfo = "Your rank is " + getPlayerRank() + ".";
             points.writePointsToFile(Points.getUsername(), Points.getStartPoint());
-            points.writePointsToFile(points.getUsername(), Points.getStartPoint());
-            points.readPointsFromFile();
         }
     }
 
@@ -231,7 +229,7 @@ public class Game {
     }
 
     // Accesor to get strings of info
-    public String getTextAreaInfo() {
+    public static String getTextAreaInfo() {
         return textAreaInfo;
     }
     

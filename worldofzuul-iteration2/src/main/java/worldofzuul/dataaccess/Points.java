@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Points {
 
@@ -43,17 +45,18 @@ public class Points {
     }
 
     // Read scores from points file
-    public void readPointsFromFile() {
+    public ObservableList<String> readPointsFromFile() {
+        ObservableList<String> results = FXCollections.observableArrayList();
         try { 
             Scanner reader = new Scanner(pointsFile);
-            System.out.println("\nScore of the three latest games: ");
             while (reader.hasNext()) { // print every line in the csv file
-                System.out.println(reader.nextLine());
+                results.add(reader.nextLine());
             }
             reader.close();
         } catch (FileNotFoundException ex) { // If the file doesn't exist, print trace
             ex.printStackTrace();
         }
+        return results;
     }
 
     // Overwrite scores to points file with args
