@@ -6,7 +6,6 @@ import worldofzuul.dataaccess.Points;
 public class Game {
 
     // Declare variables.
-    private Parser parser; // Checks input of user commands.
     private Room currentRoom; // Holds current room object.
     private Inventory inventory; // Access and instantiate inventory instance.
     private Room outside; // Outside room is a classvariable due to scope.
@@ -17,7 +16,6 @@ public class Game {
     // Call createRooms method, and instansiate all attributes. 
     public Game() {
         createRooms();
-        parser = new Parser();
         inventory = new Inventory();
         points = new Points();
         startPoint = points.getStartPoint();
@@ -73,78 +71,28 @@ public class Game {
         currentRoom = outside; // outside is default room at the beginning
     }
 
-    /*
-    * Checks if the game is still running or not. 
-    * The finished boolean is default false, and the loop will continue
-    * with parsing input commands until the boolean is true. 
-     */
-    public void play() {
-        printWelcome();
-
-        boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-
-        textAreaInfo = "\nThank you for playing RecycleHero!";
-    }
-
     // Quit command method.
     public void quit() {
-    
+
         // If player is at outside room, the player is able to quit.
-            if (currentRoom.equals(outside)) {
-                textAreaInfo = "Your final number of points is: " + startPoint + "!";
-                textAreaInfo = "Your rank is " + getPlayerRank() + ".";
-              
+        if (currentRoom.equals(outside)) {
+            textAreaInfo = "Your final number of points is: " + startPoint + "!";
+            textAreaInfo = "Your rank is " + getPlayerRank() + ".";
 
-                points.writePointsToFile(points.getUsername(), startPoint);
-                points.readPointsFromFile();
-            
+            points.writePointsToFile(points.getUsername(), startPoint);
+            points.readPointsFromFile();
+
         }
-    }
-
-    // Process what first commands has been executed.
-    private boolean processCommand(Command command) {
-        boolean wantToQuit = false; // want to quit is default false until true.
-
-        CommandWord commandWord = command.getCommandWord(); // Used to 'save' current first command word
-
-        // Below is a list of all the available commands and their functions 
-        if (commandWord == CommandWord.UNKNOWN) {
-            textAreaInfo = "The commandword doesn't exist.";
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } else if (commandWord == CommandWord.GO) {
-          //  goRoom(command);
-        } else if (commandWord == CommandWord.QUIT) {
-           // wantToQuit = quit(command);
-        } else if (commandWord == CommandWord.TAKE) {
-            //pickUpGarbage(command);
-        } else if (commandWord == CommandWord.DROP) {
-            //dropGarbage(command);
-        } else if (commandWord == CommandWord.INVENTORY) {
-            //inventory.printInventory();
-        } else if (commandWord == CommandWord.LOOK) {
-            printContainer();
-        } else if (commandWord == CommandWord.SCORE) {
-            System.out.println("Your current score is [" + startPoint + "].");
-        }
-        return wantToQuit;
     }
 
     /*
     * Go room method has a command argument used to access 
     * the second commandword by direction <go> <room>.
      */
-    public void goRoom (String item) {
+    public void goRoom(String item) {
 
         // Direction 'saves' second command word from user input.
-        String direction = item; 
+        String direction = item;
         // Room type variable points at the exit of currentRoom with direction string.
         Room nextRoom = currentRoom.getExit(direction);
 
@@ -171,39 +119,32 @@ public class Game {
         boolean isGarbageItemReal = false;
 
         // If inventory size contains less than two elements, continue
-        if (inventory.getInventory().size() < 2) {
-
-            for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-
-                // If the given second command word is equal to a name in the container list, add item to inventory.
-                if (garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName())) {
-                    isGarbageItemReal = true;
-
-                    // If the item you take is already correct sorted, you substract the same amount of garbage points.
-                    if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
-                        startPoint -= currentRoom.getContainer().get(i).getPoints();
-                    }
-
-                    inventory.getInventory().add(currentRoom.getContainer().get(i));
-                    textAreaInfo = currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.";
-                    currentRoom.getContainer().remove(i);
-                }
-            }
-
-            // If item doesn't exist, print.
-            if (isGarbageItemReal == false) {
-                textAreaInfo = "Garbage " + garbageName + " doesn't exist.";
-            }
-
-        } else {
-            // If container list has more than two items, your hands are full.
+        if (inventory.getInventory().size() >= 2) {
+        // If container list has more than two items, your hands are full.
             textAreaInfo = "Your hands are full!";
+            return;
         }
+        
+        for (int i = 0; i < currentRoom.getContainer().size(); i++) {
 
+            // If the given second command word is equal to a name in the container list, add item to inventory.
+            if (garbageName.equalsIgnoreCase(currentRoom.getContainer().get(i).getGarbageName())) {
+                isGarbageItemReal = true;
+
+                // If the item you take is already correct sorted, you substract the same amount of garbage points.
+                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                    startPoint -= currentRoom.getContainer().get(i).getPoints();
+                }
+
+                inventory.getInventory().add(currentRoom.getContainer().get(i));
+                textAreaInfo = currentRoom.getContainer().get(i).getGarbageName() + " has been added to the inventory.";
+                currentRoom.getContainer().remove(i);
+            }
+        }
     }
 
     // Drop command method.
-    public void dropGarbage(String item) { 
+    public void dropGarbage(String item) {
         String garbageName = item;
 
         // Boolean used to set the garbage item to real or not
@@ -268,22 +209,6 @@ public class Game {
         return rank;
     }
 
-    /*
-    * If the container in the room isn't empty, iterate through container and print out contents.
-    * else print out that the specific container is empty. 
-     */
-    public void printContainer() {
-        if (!currentRoom.getContainer().isEmpty()) {
-            System.out.print("Contents of " + currentRoom.typeOfContainer() + " container: ");
-            for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-                System.out.print((i == 0 ? "" : ", ") + currentRoom.getContainer().get(i).getGarbageName());
-            }
-            System.out.println(".");
-        } else {
-            System.out.println("The " + currentRoom.typeOfContainer() + " container is empty.");
-        }
-    }
-
     // Print welcome strings.
     private void printWelcome() {
         // Call create username method from Points class, before welcome printing. 
@@ -292,28 +217,14 @@ public class Game {
         System.out.println("Welcome to RecycleHero, " + points.getUsername() + "!");
         System.out.println("You're an employee at a recycling station and just arrived for work.");
         System.out.println("Your job is to sort and collect the garbage that are littering on the ground.");
-        System.out.println("Write '" + CommandWord.HELP + "' if you need help.\n");
         System.out.println(currentRoom.getLongDescription());
     }
 
-    // Print help strings 
-    private void printHelp() {
-        System.out.println("Your command words are:");
-        parser.showCommands();
-        System.out.println("\nGo: move between rooms. (Use direction as second command word)");
-        System.out.println("Quit: leave the game.");
-        System.out.println("Take: pick up items.");
-        System.out.println("Drop: drop items.");
-        System.out.println("Inventory: show item(s) in your hands.");
-        System.out.println("Look: look inside containers.");
-        System.out.println("Score: see your current score.");
-    }
-    
     // Accesor to get current room
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    
+
     // Accesor to get strings of info
     public String getTextAreaInfo() {
         return textAreaInfo;

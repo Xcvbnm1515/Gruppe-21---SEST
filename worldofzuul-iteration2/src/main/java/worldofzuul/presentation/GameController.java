@@ -16,7 +16,7 @@ import worldofzuul.domain.Game;
 import worldofzuul.domain.Garbage;
 import worldofzuul.domain.Inventory;
 
-public class PrimaryController implements Initializable {
+public class GameController implements Initializable {
 
     // Java FXML attributes
     @FXML private ListView<Garbage> lvContainer;

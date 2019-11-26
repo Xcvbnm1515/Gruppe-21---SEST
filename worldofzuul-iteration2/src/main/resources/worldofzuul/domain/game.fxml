@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
+   <top>
+      <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#goNorth" text="North" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <Button fx:id="btnWest" mnemonicParsing="false" onAction="#goWest" text="West" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Button fx:id="btnEast" mnemonicParsing="false" onAction="#goEast" text="East" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#goSouth" text="South" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="98.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label text="Inventory" />
+                        <ListView fx:id="lvInventory" orientation="HORIZONTAL" prefHeight="82.0" prefWidth="260.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="btnTake" mnemonicParsing="false" onAction="#takeGarbage" text="Take" />
+                        <Button fx:id="btnDrop" mnemonicParsing="false" onAction="#dropGarbage" text="Drop" />
+                        <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <TextArea fx:id="txtArea" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="67.0" layoutX="306.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox layoutX="36.0" layoutY="39.0" prefHeight="179.0" prefWidth="223.0">
+               <children>
+                  <Label fx:id="lbContainer" text="Container" />
+                  <ListView fx:id="lvContainer" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
