@@ -45,6 +45,18 @@ public class Garbage {
             case 3:
                 typeOfGarbage = "Glass";
                 break;
+            case 4:
+                typeOfGarbage = "Paper";
+                break;
+            case 5:
+                typeOfGarbage = "Compost";
+                break;
+            case 6:
+                typeOfGarbage = "Clothing";
+                break;
+            case 7:
+                typeOfGarbage = "Leftover";
+                break;
             default: // control. if none of the other numbers matches it goes "Unknown" 
                 typeOfGarbage = "Unknown";
 

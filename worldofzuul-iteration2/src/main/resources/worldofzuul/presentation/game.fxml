@@ -1,69 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="512.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
    <top>
-      <Button fx:id="btnNorth" mnemonicParsing="false" onAction="#goNorth" text="North" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="760.0" spacing="15.0">
+               <children>
+                  <Text fx:id="txtUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtScore" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="82.0" prefWidth="547.0">
+               <children>
+                  <Button fx:id="btnNorth" focusTraversable="false" mnemonicParsing="false" onAction="#goNorth" text="North" />
+                  <Text fx:id="txtContainerRoom" strokeType="OUTSIDE" strokeWidth="0.0" text="You are at the &lt;&gt; container">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
    </top>
    <left>
-      <Button fx:id="btnWest" mnemonicParsing="false" onAction="#goWest" text="West" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnWest" focusTraversable="false" mnemonicParsing="false" onAction="#goWest" text="West" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Button fx:id="btnEast" mnemonicParsing="false" onAction="#goEast" text="East" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnEast" focusTraversable="false" mnemonicParsing="false" onAction="#goEast" text="East" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="168.0" prefWidth="701.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSouth" mnemonicParsing="false" onAction="#goSouth" text="South" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="72.0" prefWidth="760.0">
                <children>
                   <VBox prefHeight="83.0" prefWidth="88.0">
                      <children>
-                        <Label fx:id="txtUsername" text="Username" />
                         <ImageView fitHeight="84.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Label text="Inventory" />
-                        <ListView fx:id="lvInventory" orientation="HORIZONTAL" prefHeight="82.0" prefWidth="260.0" />
+                        <ListView fx:id="lvInventory" focusTraversable="false" orientation="HORIZONTAL" prefHeight="82.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="btnTake" mnemonicParsing="false" onAction="#takeGarbage" text="Take" />
-                        <Button fx:id="btnDrop" mnemonicParsing="false" onAction="#dropGarbage" text="Drop" />
-                        <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
+                        <Button fx:id="btnTake" focusTraversable="false" mnemonicParsing="false" onAction="#takeGarbage" text="Take" />
+                        <Button fx:id="btnDrop" focusTraversable="false" mnemonicParsing="false" onAction="#dropGarbage" text="Drop" />
+                        <Button fx:id="btnQuit" focusTraversable="false" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
                      </children>
                   </VBox>
-                  <Label text="Score: " />
-                  <Label fx:id="lbScore" prefHeight="17.0" prefWidth="78.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="btnSouth" focusTraversable="false" mnemonicParsing="false" onAction="#goSouth" text="South">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="67.0" prefWidth="760.0">
+               <children>
+                  <Text fx:id="txtInfo" boundsType="VISUAL" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus posuere volutpat. Nunc eget porta velit. Nam aliquet ultricies diam vehicula sollicitudin. Curabitur quis vulputate lorem" textAlignment="CENTER" wrappingWidth="446.2021484375">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
-            <TextArea fx:id="txtArea" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="170.0" prefWidth="679.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="626.1999755859375" minWidth="10.0" prefWidth="391.99998779296874" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="407.9999633789063" minWidth="10.0" prefWidth="327.2000122070313" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="67.0" layoutX="306.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
-            <VBox layoutX="36.0" layoutY="39.0" prefHeight="179.0" prefWidth="223.0">
-               <children>
-                  <Label fx:id="lbContainer" text="Container" />
-                  <ListView fx:id="lvContainer" />
-               </children>
-            </VBox>
+            <ListView fx:id="lvContainer" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="171.0" prefWidth="194.0" />
+            <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../../../../Resources/Images/character.png" />
+               </image>
+            </ImageView>
          </children>
-      </AnchorPane>
+      </GridPane>
    </center>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </BorderPane>

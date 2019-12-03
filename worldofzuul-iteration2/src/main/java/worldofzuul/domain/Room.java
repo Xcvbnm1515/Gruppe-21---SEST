@@ -113,21 +113,33 @@ public class Room {
             case 3:
                 type = "glass";
                 break;
+            case 4:
+                type = "paper";
+                break;
+            case 5:
+                type = "compost";
+                break;
+            case 6:
+                type = "clothing";
+                break;
+            case 7:
+                type = "leftover";
+                break;
         }
         return type;
 
     }
 
     // Print out fact elements stretching from index 0 to 5
-    public void getGoodFact() {
+    public String getGoodFact() {
         addFactList();
-        System.out.println(copyFacts[0 + (int) (Math.random() * 5)]);
+        return "Correct placement!\nFact: " + copyFacts[0 + (int) (Math.random() * 5)];
     }
 
     // Print out fact elements stretching from index 5 to 10
-    public void getBadFact() {
+    public String getBadFact() {
         addFactList();
-        System.out.println(copyFacts[5 + (int) (Math.random() * 5)]);
+        return "Wrong placement.\nFact: " + copyFacts[5 + (int) (Math.random() * 5)];
     }
 
     // Add facts from file to array of objects

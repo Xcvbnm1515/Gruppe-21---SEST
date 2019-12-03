@@ -33,7 +33,7 @@ public class EndController implements Initializable {
         imgViewLogo.setImage(image);
 
         // Set player rank text
-        txtRank.setText(Game.getTextAreaInfo());
+        txtRank.setText(Game.getTextInfo());
         
         // Set listview scoreboard
         lvScore.setItems(points.readPointsFromFile());

@@ -8,12 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import worldofzuul.dataaccess.Points;
 import worldofzuul.domain.Game;
@@ -32,17 +31,17 @@ public class GameController implements Initializable {
     @FXML private Button btnEast;
     @FXML private Button btnSouth;
     @FXML private Button btnQuit;
-    @FXML private TextArea txtArea;
-    @FXML private Label txtUsername;
+    @FXML private Text txtUsername;
+    @FXML private Text txtContainerRoom;
+    @FXML private Text txtScore;
+    @FXML private Text txtInfo;
     @FXML private ImageView imgViewCharacter;
-    @FXML private Label lbContainer;
-    @FXML private Label lbScore;
     
     private Game game;
     private File file;
     private Image image;
     private ImageView imageView;
-
+    
     // Instantiate game objects and initialize listviews. 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -57,13 +56,16 @@ public class GameController implements Initializable {
         lvInventory.setItems(Inventory.getInventory()); // Set current inventory contents
          
         // Set first initalized current room text to be displayed
-        lbContainer.setText(game.getCurrentRoom().typeOfContainer()); 
+        txtContainerRoom.setText("You are at the " + game.getCurrentRoom().typeOfContainer() + " container.");  
         
         // Set entered username to be displayed
         txtUsername.setText(Points.getUsername());
         
         // Check what exists is necessary for the first initialized current room
         hideExitsIfNecessary();
+        
+        // Initialize welcome text at the first room
+        txtInfo.setText(game.printWelcome());
         
         // Set character image
         file = new File("Resources/Images/character.png");
@@ -79,8 +81,8 @@ public class GameController implements Initializable {
     @FXML
     private void takeGarbage(ActionEvent event) {
         game.pickUpGarbage(lvContainer.getSelectionModel().getSelectedItem().getGarbageName());
-        txtArea.setText(game.getTextAreaInfo());
-        lbScore.setText("" + Points.getStartPoint());
+        txtInfo.setText(Game.getTextInfo());
+        txtScore.setText("Score: " + Points.getStartPoint());
     }
 
     /* 
@@ -91,8 +93,8 @@ public class GameController implements Initializable {
     @FXML
     private void dropGarbage(ActionEvent event) {
         game.dropGarbage(lvInventory.getSelectionModel().getSelectedItem().getGarbageName());
-        txtArea.setText(game.getTextAreaInfo());
-        lbScore.setText("" + Points.getStartPoint());
+        txtInfo.setText(Game.getTextInfo());
+        txtScore.setText("Score: " + Points.getStartPoint());
     }
 
     // User clicks on a particular exit and the contents of nodes changes.
@@ -102,9 +104,9 @@ public class GameController implements Initializable {
         String btnText = ((Button)event.getSource()).getText().toLowerCase();
         game.goRoom(btnText);      
         lvContainer.setItems(game.getCurrentRoom().getContainer());     
-        lbContainer.setText(game.getCurrentRoom().typeOfContainer());  
-        txtArea.setText(game.getTextAreaInfo());
-        lbScore.setText("" + Points.getStartPoint());
+        txtContainerRoom.setText("You are at the " + game.getCurrentRoom().typeOfContainer() + " container.");  
+        txtInfo.setText(Game.getTextInfo());
+        txtScore.setText("Score: " + Points.getStartPoint());
         hideExitsIfNecessary();
     }
     
@@ -131,7 +133,7 @@ public class GameController implements Initializable {
        if (game.quit() == true) {
            App.setRoot("end");
        } else {
-           txtArea.setText(game.getTextAreaInfo());
+           txtInfo.setText(Game.getTextInfo());
        }
     }
 
@@ -199,8 +201,8 @@ public class GameController implements Initializable {
                         file = new File("Resources/Images/Garbage/" + item.getImageFile());
                         image = new Image(file.toURI().toString()); 
                         imageView = new ImageView(image);
-                        imageView.setFitHeight(70);
-                        imageView.setFitWidth(70);
+                        imageView.setFitHeight(60);
+                        imageView.setFitWidth(60);
                         setGraphic(imageView);
                     }
                 };
