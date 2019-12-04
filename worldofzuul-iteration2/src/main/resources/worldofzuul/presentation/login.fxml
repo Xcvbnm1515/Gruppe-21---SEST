@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="512.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.LoginController">
+<GridPane prefHeight="512.0" prefWidth="800.0" stylesheets="@visuals.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.LoginController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -38,10 +39,11 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <Button fx:id="btnStart" focusTraversable="false" mnemonicParsing="false" onAction="#startGame" text="Start">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startGame" text="Start">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </VBox>
    </children>

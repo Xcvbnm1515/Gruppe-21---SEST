@@ -1,0 +1,90 @@
+/* login */
+#txtUsername {
+    -fx-padding: 10 10 10 10;  
+    -fx-border-color: #84817a;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #d1ccc0;
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: #000000;
+}
+
+#btnStart {
+    -fx-border-color: #84817a;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #d1ccc0;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-padding: 5 20 5 20;   
+    -fx-cursor: hand; 
+}
+
+/*Default button control design*/
+#btnWest, #btnEast, #btnNorth, #btnSouth, #btnTake, #btnDrop, #btnQuit { 
+    -fx-border-color: #84817a;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #d1ccc0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-padding: 5 10 5 10;   
+    -fx-cursor: hand;
+}
+
+/*Default movement button control design*/
+#btnStart:hover, #btnWest:hover, #btnEast:hover, #btnNorth:hover, #btnSouth:hover {
+    -fx-background-color: linear-gradient(#d1ccc0, #84817a);
+}
+
+/*Take button*/
+#btnTake {
+    -fx-border-color: #00b894;
+    -fx-background-color: #55efc4;
+}
+
+#btnTake:hover {
+    -fx-background-color: linear-gradient(#55efc4, #00b894);
+}
+
+/*Drop button*/
+#btnDrop {
+    -fx-border-color: #0984e3;
+    -fx-background-color: #74b9ff;
+}
+
+#btnDrop:hover {
+    -fx-background-color: linear-gradient(#74b9ff, #0984e3);
+}
+
+/*Quit button*/
+#btnQuit {
+    -fx-border-color: #d63031;
+    -fx-background-color: #ff7675;
+}
+
+#btnQuit:hover {
+    -fx-background-color: linear-gradient(#ff7675, #d63031);
+}
+
+/*Listview content*/
+#lvContainer, #lvInventory, #lvScore {
+    -fx-background-color: #4b4b4b;  
+    -fx-background-radius: 10;
+    -fx-border-color: #3d3d3d;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+    -fx-font-size: 15;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.list-cell:selected {
+    -fx-background-color: #3d3d3d;   
+}

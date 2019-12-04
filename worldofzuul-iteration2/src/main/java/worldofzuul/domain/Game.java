@@ -248,7 +248,7 @@ public class Game {
     public void createUsername(String username) {
         Points.setUsername(username);
     }
-
+    
     // Get current room the player is in
     public Room getCurrentRoom() {
         return currentRoom;

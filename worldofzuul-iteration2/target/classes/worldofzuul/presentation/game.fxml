@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="512.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="512.0" prefWidth="800.0" stylesheets="@visuals.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
    <top>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox prefHeight="86.0" prefWidth="760.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="0.0" prefWidth="760.0" spacing="15.0">
                <children>
@@ -32,7 +32,7 @@
                   </Text>
                </children>
             </HBox>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="82.0" prefWidth="547.0">
+            <VBox alignment="CENTER" prefHeight="68.0" prefWidth="760.0">
                <children>
                   <Button fx:id="btnNorth" focusTraversable="false" mnemonicParsing="false" onAction="#goNorth" text="North" />
                   <Text fx:id="txtContainerRoom" strokeType="OUTSIDE" strokeWidth="0.0" text="You are at the &lt;&gt; container">
@@ -44,9 +44,6 @@
                      </VBox.margin>
                   </Text>
                </children>
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
             </VBox>
          </children>
       </VBox>
@@ -58,7 +55,7 @@
       <Button fx:id="btnEast" focusTraversable="false" mnemonicParsing="false" onAction="#goEast" text="East" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <VBox alignment="CENTER" prefHeight="168.0" prefWidth="701.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="217.0" prefWidth="760.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="72.0" prefWidth="760.0">
                <children>
@@ -72,13 +69,16 @@
                         <ListView fx:id="lvInventory" focusTraversable="false" orientation="HORIZONTAL" prefHeight="82.0" prefWidth="170.0" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Button fx:id="btnTake" focusTraversable="false" mnemonicParsing="false" onAction="#takeGarbage" text="Take" />
                         <Button fx:id="btnDrop" focusTraversable="false" mnemonicParsing="false" onAction="#dropGarbage" text="Drop" />
                         <Button fx:id="btnQuit" focusTraversable="false" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
                      </children>
-                  </VBox>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -86,10 +86,10 @@
             </HBox>
             <Button fx:id="btnSouth" focusTraversable="false" mnemonicParsing="false" onAction="#goSouth" text="South">
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="67.0" prefWidth="760.0">
+            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="53.0" prefWidth="760.0">
                <children>
                   <Text fx:id="txtInfo" boundsType="VISUAL" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus posuere volutpat. Nunc eget porta velit. Nam aliquet ultricies diam vehicula sollicitudin. Curabitur quis vulputate lorem" textAlignment="CENTER" wrappingWidth="446.2021484375">
                      <font>
@@ -104,14 +104,14 @@
    <center>
       <GridPane prefHeight="170.0" prefWidth="679.0" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="626.1999755859375" minWidth="10.0" prefWidth="391.99998779296874" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="626.1999755859375" minWidth="10.0" prefWidth="391.99998779296874" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="407.9999633789063" minWidth="10.0" prefWidth="327.2000122070313" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ListView fx:id="lvContainer" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="171.0" prefWidth="194.0" />
+            <ListView fx:id="lvContainer" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" orientation="HORIZONTAL" prefHeight="100.0" prefWidth="308.0" />
             <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
                   <Image url="@../../../../../Resources/Images/character.png" />
