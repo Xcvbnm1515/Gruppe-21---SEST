@@ -226,11 +226,11 @@ public class Game {
         String rank = "";
         if (Points.getStartPoint() == 0) {
             rank = "beginner. Do some research. Try again";
-        } else if (Points.getStartPoint() <= 5) {
-            rank = "amateur. You can do it better. Try again";
         } else if (Points.getStartPoint() <= 10) {
+            rank = "amateur. You can do it better. Try again";
+        } else if (Points.getStartPoint() <= 20) {
             rank = "semi-professional. You are skilled. Try again";
-        } else if (Points.getStartPoint() == 12) {
+        } else if (Points.getStartPoint() == 24) {
             rank = "recyclehero. You know your stuff";
         }
         return rank;
