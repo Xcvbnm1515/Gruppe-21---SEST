@@ -19,7 +19,7 @@ public class Points {
 
     public Points() {
         // Creating instances and make startPoint point at a value
-        pointsFile = new File("Resources/points.csv");
+        pointsFile = new File("Resources/points.txt");
         pointsList = new ArrayList<String>();
         startPoint = 0;
     }

@@ -48,14 +48,14 @@ public class Game {
         grb24 = new Garbage("PizzaBox", 7, 1, "pizzabox.png");      
         
         // Instansiate room objects.
-        outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/ChemicalsFacts.csv"));
-        Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.csv"));
-        Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.csv"));
-        Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.csv"));
-        Room paperCon = new Room("at the paper container", 4, new File("Resources/Facts/PaperFacts.csv"));
-        Room compostCon = new Room("at the compost container", 5, new File("Resources/Facts/CompostFacts.csv"));
-        Room clothingCon = new Room("at the clothing container", 6, new File("Resources/Facts/ClothingFacts.csv"));
-        Room leftoverCon = new Room("at the leftover container", 7, new File("Resources/Facts/LeftoverFacts.csv"));
+        outside = new Room("now in front of the staff room", 0, new File("Resources/Facts/ChemicalsFacts.txt"));
+        Room plasticCon = new Room("at the plastic container", 1, new File("Resources/Facts/PlasticFacts.txt"));
+        Room metalCon = new Room("at the metal container", 2, new File("Resources/Facts/MetalFacts.txt"));
+        Room glassCon = new Room("at the glass container", 3, new File("Resources/Facts/GlassFacts.txt"));
+        Room paperCon = new Room("at the paper container", 4, new File("Resources/Facts/PaperFacts.txt"));
+        Room compostCon = new Room("at the compost container", 5, new File("Resources/Facts/CompostFacts.txt"));
+        Room clothingCon = new Room("at the clothing container", 6, new File("Resources/Facts/ClothingFacts.txt"));
+        Room leftoverCon = new Room("at the leftover container", 7, new File("Resources/Facts/LeftoverFacts.txt"));
         
         // Set exits and garbage items in rooms via setters. 
         outside.setExit("south", metalCon);

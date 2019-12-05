@@ -12,6 +12,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import worldofzuul.dataaccess.Points;
@@ -22,6 +24,7 @@ import worldofzuul.domain.Inventory;
 public class GameController implements Initializable {
 
     // Java FXML attributes
+    @FXML private BorderPane bpBackground;
     @FXML private ListView<Garbage> lvContainer;
     @FXML private ListView<Garbage> lvInventory;
     @FXML private Button btnTake;
@@ -36,6 +39,8 @@ public class GameController implements Initializable {
     @FXML private Text txtScore;
     @FXML private Text txtInfo;
     @FXML private ImageView imgViewCharacter;
+    @FXML private ImageView imgViewSupervisor;
+    @FXML private HBox hbDialog;
     
     private Game game;
     private File file;
@@ -69,8 +74,13 @@ public class GameController implements Initializable {
         
         // Set character image
         file = new File("Resources/Images/character.png");
-        Image image = new Image(file.toURI().toString());
-        imgViewCharacter.setImage(image); 
+        Image charImage = new Image(file.toURI().toString());
+        imgViewCharacter.setImage(charImage); 
+        
+        // Set supervisor  image
+        file = new File("Resources/Images/supervisor.png");
+        Image svImage = new Image(file.toURI().toString());
+        imgViewSupervisor.setImage(svImage); 
     }
     
     /* 

@@ -89,10 +89,15 @@
     -fx-background-color: #3d3d3d;   
 }
 
-#gpBackground{
-    -fx-background-color: #000000; 
+/*Game background*/
+#bpBackground {
+    -fx-background-color: linear-gradient(#b2bec3, #dfe6e9)
 }
 
-#bpBackground{
-    -fx-background-color: #B7BCB7; 
+#hbDialog {
+    -fx-background-color: #F79F1F;
+    -fx-border-color: #EE5A24;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
