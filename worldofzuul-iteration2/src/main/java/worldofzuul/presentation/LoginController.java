@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import worldofzuul.domain.Game;
 
 public class LoginController implements Initializable {
@@ -18,7 +19,8 @@ public class LoginController implements Initializable {
     @FXML private ImageView imgViewLogo;
     @FXML private TextField txtUsername;
     @FXML private Button btnStart;
-
+    @FXML private GridPane gpLoginBackground;
+    
     private File file;
     private Image image;
     private Game game;

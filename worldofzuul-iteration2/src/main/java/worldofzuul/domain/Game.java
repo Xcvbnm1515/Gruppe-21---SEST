@@ -120,7 +120,7 @@ public class Game {
             textInfo = "Your rank is " + getPlayerRank() + ".";
             points.writePointsToFile(Points.getUsername(), Points.getStartPoint());
         } else {
-            textInfo = "You have to be infront of the staff room, at the chemicals container.";
+            textInfo = "You have to be infront of the staff room, at the chemicals container, to quit.";
         }
         
         return hasEnded;

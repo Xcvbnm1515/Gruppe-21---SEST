@@ -136,18 +136,20 @@ public class GameController implements Initializable {
     }
     
     /*
-    * Quits the 'game' and sends the user to end stage
+    * Quits the 'game' and sends the user to end stage, while refreshing 
+    * the inventory and container list.
     */
     @FXML
     private void quitGame(ActionEvent event) throws IOException {
        if (game.quit() == true) {
+           lvInventory.getItems().clear();
+           lvContainer.refresh();
            App.setRoot("end");
        } else {
            txtInfo.setText(Game.getTextInfo());
        }
     }
-
-    
+ 
     /*
     * Method which hides exits in the current room, if the room doesn't have the
     * eligibility to go particular exits.
@@ -177,7 +179,7 @@ public class GameController implements Initializable {
             btnWest.setVisible(true);
         }
     }
-    
+
     // Method that modifies the cells of ListView, with argument as replayability
     public void changeListViewCells(ListView lv) {
         

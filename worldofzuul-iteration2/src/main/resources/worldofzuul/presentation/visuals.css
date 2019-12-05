@@ -22,8 +22,8 @@
     -fx-cursor: hand; 
 }
 
-/*Default button control design*/
-#btnWest, #btnEast, #btnNorth, #btnSouth, #btnTake, #btnDrop, #btnQuit { 
+/* Default button control design */
+#btnWest, #btnEast, #btnNorth, #btnSouth, #btnTake, #btnDrop, #btnQuit, #btnTryAgain { 
     -fx-border-color: #84817a;
     -fx-border-width: 2;
     -fx-border-radius: 10;
@@ -35,12 +35,12 @@
     -fx-cursor: hand;
 }
 
-/*Default movement button control design*/
-#btnStart:hover, #btnWest:hover, #btnEast:hover, #btnNorth:hover, #btnSouth:hover {
+/* Default movement button control design */
+#btnStart:hover, #btnWest:hover, #btnEast:hover, #btnNorth:hover, #btnSouth:hover, #btnTryAgain:hover {
     -fx-background-color: linear-gradient(#d1ccc0, #84817a);
 }
 
-/*Take button*/
+/* Take button */
 #btnTake {
     -fx-border-color: #00b894;
     -fx-background-color: #55efc4;
@@ -50,7 +50,7 @@
     -fx-background-color: linear-gradient(#55efc4, #00b894);
 }
 
-/*Drop button*/
+/* Drop button */
 #btnDrop {
     -fx-border-color: #0984e3;
     -fx-background-color: #74b9ff;
@@ -60,7 +60,7 @@
     -fx-background-color: linear-gradient(#74b9ff, #0984e3);
 }
 
-/*Quit button*/
+/* Quit button */
 #btnQuit {
     -fx-border-color: #d63031;
     -fx-background-color: #ff7675;
@@ -70,7 +70,7 @@
     -fx-background-color: linear-gradient(#ff7675, #d63031);
 }
 
-/*Listview content*/
+/* Listview content */
 #lvContainer, #lvInventory, #lvScore {
     -fx-background-color: #4b4b4b;  
     -fx-background-radius: 10;
@@ -89,11 +89,21 @@
     -fx-background-color: #3d3d3d;   
 }
 
-/*Game background*/
+#lvScore .list-cell:selected {
+    -fx-background-color: transparent;
+}
+
+/* Game background */
 #bpBackground {
     -fx-background-color: linear-gradient(#b2bec3, #dfe6e9)
 }
 
+/* Login and End background */
+#gpLoginBackground, #gpEndBackground {
+    -fx-background-color: linear-gradient(#dfe6e9, #deffce)
+}
+
+/* Dialog box */
 #hbDialog {
     -fx-background-color: #F79F1F;
     -fx-border-color: #EE5A24;

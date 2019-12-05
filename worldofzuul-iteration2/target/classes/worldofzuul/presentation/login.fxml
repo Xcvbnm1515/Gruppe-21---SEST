@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="512.0" prefWidth="800.0" stylesheets="@visuals.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.LoginController">
+<GridPane fx:id="gpLoginBackground" prefHeight="512.0" prefWidth="800.0" stylesheets="@visuals.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.LoginController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
