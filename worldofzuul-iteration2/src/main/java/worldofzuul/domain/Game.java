@@ -230,7 +230,7 @@ public class Game {
             rank = "amateur. You can do it better. Try again";
         } else if (Points.getStartPoint() <= 20) {
             rank = "semi-professional. You are skilled. Try again";
-        } else if (Points.getStartPoint() == 24) {
+        } else if (Points.getStartPoint() >= 24) {
             rank = "recyclehero. You know your stuff";
         }
         return rank;

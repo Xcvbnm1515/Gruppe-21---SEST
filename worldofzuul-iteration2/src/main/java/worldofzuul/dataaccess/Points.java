@@ -41,7 +41,7 @@ public class Points {
     
     // Static setter Username method available for all classes
     public static String setUsername(String username) {
-        return Points.username = username;
+        return Points.username = username.substring(0, 1).toUpperCase() + username.substring(1);
     }
 
     // Read scores from points file
