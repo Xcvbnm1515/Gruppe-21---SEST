@@ -34,12 +34,13 @@ public class GameController implements Initializable {
     @FXML private Button btnEast;
     @FXML private Button btnSouth;
     @FXML private Button btnQuit;
-    @FXML private Text txtUsername;
     @FXML private Text txtContainerRoom;
     @FXML private Text txtScore;
     @FXML private Text txtInfo;
     @FXML private ImageView imgViewCharacter;
     @FXML private ImageView imgViewSupervisor;
+    @FXML private ImageView imgViewContainer;
+    @FXML private ImageView imgViewSign;
     @FXML private HBox hbDialog;
     
     private Game game;
@@ -61,10 +62,7 @@ public class GameController implements Initializable {
         lvInventory.setItems(Inventory.getInventory()); // Set current inventory contents
          
         // Set first initalized current room text to be displayed
-        txtContainerRoom.setText("You are at the " + game.getCurrentRoom().typeOfContainer() + " container.");  
-        
-        // Set entered username to be displayed
-        txtUsername.setText(Points.getUsername());
+        txtContainerRoom.setText(game.getCurrentRoom().getShortDescription());  
         
         // Check what exists is necessary for the first initialized current room
         hideExitsIfNecessary();
@@ -81,30 +79,50 @@ public class GameController implements Initializable {
         file = new File("Resources/Images/supervisor.png");
         Image svImage = new Image(file.toURI().toString());
         imgViewSupervisor.setImage(svImage); 
+        
+        // Set container image
+        file = new File("Resources/Images/container.png");
+        Image conImage = new Image(file.toURI().toString());
+        imgViewContainer.setImage(conImage); 
+        
+        // Set sign post image
+        file = new File("Resources/Images/sign_post.png");
+        Image signImage = new Image(file.toURI().toString());
+        imgViewSign.setImage(signImage); 
     }
     
     /* 
     * Take garbage event handler.
     * Using takeGarbage method which has container listview item as argument. 
-    * After take has been called, set relevant text to user and add points if needed.
+    * After take has been called and item selected, set relevant text to user and add points if needed.
+    * If not selected, give message to user.
     */
     @FXML
     private void takeGarbage(ActionEvent event) {
-        game.pickUpGarbage(lvContainer.getSelectionModel().getSelectedItem().getGarbageName());
-        txtInfo.setText(Game.getTextInfo());
-        txtScore.setText("Score: " + Points.getStartPoint());
+        if (!lvContainer.getSelectionModel().isEmpty()) {
+            game.pickUpGarbage(lvContainer.getSelectionModel().getSelectedItem().getGarbageName());
+            txtInfo.setText(Game.getTextInfo());
+            txtScore.setText("Score: " + Points.getStartPoint());
+        } else {
+            txtInfo.setText("Click on an item in the container, before it can be taken.");
+        }   
     }
 
     /* 
     * Drop garbage event handler.
     * Using dropGarbage method which has inventory listview item as argument. Then refresh. 
     * After take has been called, set relevant text to user and add points if needed.
+    * If not selected, give message to user.
     */
     @FXML
     private void dropGarbage(ActionEvent event) {
-        game.dropGarbage(lvInventory.getSelectionModel().getSelectedItem().getGarbageName());
-        txtInfo.setText(Game.getTextInfo());
-        txtScore.setText("Score: " + Points.getStartPoint());
+        if (!lvInventory.getSelectionModel().isEmpty()) {
+            game.dropGarbage(lvInventory.getSelectionModel().getSelectedItem().getGarbageName());
+            txtInfo.setText(Game.getTextInfo());
+            txtScore.setText("Score: " + Points.getStartPoint());
+        } else {
+            txtInfo.setText("Click on an item in the inventory, before it can be dropped.");
+        }     
     }
 
     // User clicks on a particular exit and the contents of nodes changes.
@@ -114,7 +132,7 @@ public class GameController implements Initializable {
         String btnText = ((Button)event.getSource()).getText().toLowerCase();
         game.goRoom(btnText);      
         lvContainer.setItems(game.getCurrentRoom().getContainer());     
-        txtContainerRoom.setText("You are at the " + game.getCurrentRoom().typeOfContainer() + " container.");  
+        txtContainerRoom.setText(game.getCurrentRoom().getShortDescription());  
         txtInfo.setText(Game.getTextInfo());
         txtScore.setText("Score: " + Points.getStartPoint());
         hideExitsIfNecessary();
@@ -213,8 +231,8 @@ public class GameController implements Initializable {
                         file = new File("Resources/Images/Garbage/" + item.getImageFile());
                         image = new Image(file.toURI().toString()); 
                         imageView = new ImageView(image);
-                        imageView.setFitHeight(60);
-                        imageView.setFitWidth(60);
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
                         setGraphic(imageView);
                     }
                 };

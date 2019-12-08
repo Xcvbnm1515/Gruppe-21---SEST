@@ -54,12 +54,12 @@ public class Room {
 
     // Get only what room the player is in
     public String getShortDescription() {
-        return description;
+        return description + " container";
     }
 
     // Get what room the player is in and available directions
     public String getLongDescription() {
-        return "You are " + description + ".\n" + getExitString();
+        return "The " + description + ".\n" + getExitString();
     }
 
     // Returns directions in a room available to the player

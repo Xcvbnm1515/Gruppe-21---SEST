@@ -13,9 +13,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 760, 500);
+        scene = new Scene(loadFXML("login"), 800, 512);
         stage.setTitle("RecycleHero");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

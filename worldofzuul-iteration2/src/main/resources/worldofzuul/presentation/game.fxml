@@ -10,27 +10,28 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="bpBackground" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="512.0" prefWidth="800.0" stylesheets="@visuals.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.GameController">
    <top>
-      <VBox alignment="CENTER" prefHeight="98.0" prefWidth="760.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="122.0" prefWidth="760.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="hbDialog" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="90.0" prefWidth="463.0">
+            <HBox fx:id="hbDialog" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="72.0" prefWidth="445.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="90.0" prefWidth="54.0">
                      <children>
-                        <ImageView fx:id="imgViewSupervisor" fitHeight="72.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgViewSupervisor" fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../Resources/Images/supervisor.png" />
                            </image></ImageView>
                      </children>
                   </VBox>
-                  <Text fx:id="txtInfo" boundsType="VISUAL" fill="WHITE" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus posuere volutpat. Nunc eget porta velit. Nam aliquet ultricies diam vehicula sollicitudin. Curabitur quis vulputate lorem" textAlignment="CENTER" wrappingWidth="427.365234375">
+                  <Text fx:id="txtInfo" boundsType="VISUAL" fill="WHITE" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam luctus posuere volutpat. Nunc eget porta velit. Nam aliquet ultricies diam vehicula sollicitudin. Curabitur quis vulputate lorem" textAlignment="CENTER" wrappingWidth="414.6291809082031">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="11.0" />
                      </font>
                   </Text>
                </children>
@@ -38,35 +39,28 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="41.0" prefWidth="760.0">
+            <VBox alignment="CENTER" prefHeight="48.0" prefWidth="760.0">
                <children>
-                  <Button fx:id="btnNorth" focusTraversable="false" mnemonicParsing="false" onAction="#goNorth" text="North">
+                  <Button fx:id="btnNorth" focusTraversable="false" mnemonicParsing="false" onAction="#goNorth" prefHeight="38.0" prefWidth="74.0" text="North">
                      <VBox.margin>
                         <Insets top="10.0" />
-                     </VBox.margin></Button>
-                  <Text fx:id="txtContainerRoom" strokeType="OUTSIDE" strokeWidth="0.0" text="You are at the &lt;&gt; container" textAlignment="CENTER" wrappingWidth="625.8715468645096">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
                      </VBox.margin>
-                  </Text>
+                  </Button>
                </children>
             </VBox>
          </children>
       </VBox>
    </top>
    <left>
-      <Button fx:id="btnWest" focusTraversable="false" mnemonicParsing="false" onAction="#goWest" text="West" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnWest" focusTraversable="false" mnemonicParsing="false" onAction="#goWest" prefHeight="53.0" prefWidth="43.0" text="West" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Button fx:id="btnEast" focusTraversable="false" mnemonicParsing="false" onAction="#goEast" text="East" BorderPane.alignment="CENTER" />
+      <Button fx:id="btnEast" focusTraversable="false" mnemonicParsing="false" onAction="#goEast" prefHeight="50.0" prefWidth="38.0" text="East" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <VBox alignment="CENTER" prefHeight="137.0" prefWidth="760.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="132.0" prefWidth="760.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSouth" focusTraversable="false" mnemonicParsing="false" onAction="#goSouth" prefHeight="26.0" prefWidth="58.0" text="South">
+            <Button fx:id="btnSouth" focusTraversable="false" mnemonicParsing="false" onAction="#goSouth" prefHeight="89.0" prefWidth="78.0" text="South">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -75,7 +69,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="114.0" prefWidth="94.0" spacing="15.0">
                      <children>
-                        <Text fx:id="txtScore" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 0">
+                        <Text fx:id="txtScore" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -84,7 +78,7 @@
                   </HBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <ListView fx:id="lvInventory" focusTraversable="false" orientation="HORIZONTAL" prefHeight="80.0" prefWidth="170.0">
+                        <ListView fx:id="lvInventory" focusTraversable="false" orientation="HORIZONTAL" prefHeight="76.0" prefWidth="149.0">
                            <VBox.margin>
                               <Insets right="20.0" />
                            </VBox.margin></ListView>
@@ -109,36 +103,53 @@
       </VBox>
    </bottom>
    <center>
-      <GridPane prefHeight="157.0" prefWidth="660.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="231.0" prefWidth="660.0" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="626.1999755859375" minWidth="10.0" prefWidth="391.99998779296874" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="407.9999633789063" minWidth="10.0" prefWidth="327.2000122070313" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="626.1999755859375" minWidth="10.0" prefWidth="366.20001220703125" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="407.9999633789063" minWidth="10.0" prefWidth="293.3999877929688" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ListView fx:id="lvContainer" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" orientation="HORIZONTAL" prefHeight="100.0" prefWidth="322.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <ImageView fx:id="imgViewContainer" fitHeight="207.0" fitWidth="281.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Resources/Images/container.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="lvContainer" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" orientation="HORIZONTAL" prefHeight="78.0" prefWidth="260.0" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="16.0" />
+               </GridPane.margin>
+            </ListView>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <StackPane alignment="CENTER_LEFT" prefHeight="202.0" prefWidth="128.0">
                      <children>
-                        <Text fx:id="txtUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <ImageView fx:id="imgViewCharacter" fitHeight="129.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgViewSign" fitHeight="191.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Resources/Images/character.png" />
+                              <Image url="@../../../../../Resources/Images/sign_post.png" />
                            </image>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
                         </ImageView>
+                        <Text fx:id="txtContainerRoom" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Plastic Container" textAlignment="CENTER" wrappingWidth="83.47152662277222" StackPane.alignment="TOP_CENTER">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets top="23.0" />
+                           </StackPane.margin>
+                        </Text>
                      </children>
-                  </VBox>
+                  </StackPane>
+                  <ImageView fx:id="imgViewCharacter" fitHeight="148.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Resources/Images/character.png" />
+                     </image>
+                  </ImageView>
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </HBox>
          </children>
       </GridPane>

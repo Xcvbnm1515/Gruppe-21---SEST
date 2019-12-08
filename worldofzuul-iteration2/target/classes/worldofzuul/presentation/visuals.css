@@ -1,4 +1,4 @@
-/* login */
+/* Login input field */
 #txtUsername {
     -fx-padding: 10 10 10 10;  
     -fx-border-color: #84817a;
@@ -10,6 +10,11 @@
     -fx-prompt-text-fill: #000000;
 }
 
+/* Default button settings */
+#btnStart, #btnTake, #btnDrop, #btnQuit, #btnNorth, #btnEast, #btnSouth, #btnWest {
+    -fx-cursor: hand;
+}
+
 #btnStart {
     -fx-border-color: #84817a;
     -fx-border-width: 2;
@@ -19,11 +24,42 @@
     -fx-font-weight: bold;
     -fx-font-size: 14;
     -fx-padding: 5 20 5 20;   
-    -fx-cursor: hand; 
+}
+
+/* Movement button settings */
+#btnNorth, #btnEast, #btnSouth, #btnWest {
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-text-fill: transparent;
+}
+
+#btnWest {
+    -fx-background-image: url("../../../../Resources/Images/Arrows/left_arrow.png");
+    -fx-background-size: 40;
+}
+
+#btnEast {
+    -fx-background-image: url("../../../../Resources/Images/Arrows/right_arrow.png");
+    -fx-background-size: 40;
+}
+
+#btnNorth {
+    -fx-background-image: url("../../../../Resources/Images/Arrows/up_arrow.png");
+    -fx-background-size: 50;
+}
+
+#btnSouth {
+    -fx-background-image: url("../../../../Resources/Images/Arrows/down_arrow.png");
+    -fx-background-size: 50;
+}
+
+#btnWest:hover, #btnEast:hover, #btnNorth:hover, #btnSouth:hover, #btnTryAgain:hover {
+    -fx-opacity: 0.7;
 }
 
 /* Default button control design */
-#btnWest, #btnEast, #btnNorth, #btnSouth, #btnTake, #btnDrop, #btnQuit, #btnTryAgain { 
+#btnTake, #btnDrop, #btnQuit, #btnTryAgain { 
     -fx-border-color: #84817a;
     -fx-border-width: 2;
     -fx-border-radius: 10;
@@ -32,11 +68,10 @@
     -fx-font-weight: bold;
     -fx-font-size: 12;
     -fx-padding: 5 10 5 10;   
-    -fx-cursor: hand;
 }
 
 /* Default movement button control design */
-#btnStart:hover, #btnWest:hover, #btnEast:hover, #btnNorth:hover, #btnSouth:hover, #btnTryAgain:hover {
+#btnStart:hover {
     -fx-background-color: linear-gradient(#d1ccc0, #84817a);
 }
 
@@ -70,8 +105,23 @@
     -fx-background-color: linear-gradient(#ff7675, #d63031);
 }
 
-/* Listview content */
-#lvContainer, #lvInventory, #lvScore {
+/* Default listview settings */
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+/* Container listview */
+#lvContainer {
+    -fx-background-color: transparent;
+}
+
+#lvContainer .list-cell:selected {
+    -fx-background-color: #469e52;
+}
+
+/* Inventory and leaderboard listview */
+#lvInventory, #lvScore {
     -fx-background-color: #4b4b4b;  
     -fx-background-radius: 10;
     -fx-border-color: #3d3d3d;
@@ -80,12 +130,7 @@
     -fx-font-size: 15;
 }
 
-.list-cell {
-    -fx-background-color: transparent;
-    -fx-text-fill: #ffffff;
-}
-
-.list-cell:selected {
+#lvInventory .list-cell:selected{
     -fx-background-color: #3d3d3d;   
 }
 
@@ -95,7 +140,9 @@
 
 /* Game background */
 #bpBackground {
-    -fx-background-color: linear-gradient(#b2bec3, #dfe6e9)
+    -fx-background-image: url("../../../../Resources/Images/background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 /* Login and End background */
