@@ -211,14 +211,14 @@ public class Game {
     public void checkContainerPoints() {
         if (currentRoom.hasRoomBeenChecked() == false) { // If hasn't checked, run loop and if statement.
             for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) { // Check if garbage type equal container type.
-                    currentRoom.setHasRoomBeenChecked(true); // Set boolean to true after checked. 
+                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) { // Check if garbage type equal container type.                
                     int startPoint = Points.getStartPoint();
                     startPoint += currentRoom.getContainer().get(i).getPoints(); // Sum points with the points of equal items in the container.
                     Points.setStartPoint(startPoint);
                 }
             }
-        }
+            currentRoom.setHasRoomBeenChecked(true); // Set boolean to true after checked. 
+        } 
     }
 
     // Ranksystem that checks number of points in the end, and gives rank. 
