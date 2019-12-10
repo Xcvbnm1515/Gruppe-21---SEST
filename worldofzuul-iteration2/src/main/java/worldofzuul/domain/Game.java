@@ -193,9 +193,9 @@ public class Game {
                     int startPoint = Points.getStartPoint();
                     startPoint += inventory.getInventory().get(i).getPoints();
                     Points.setStartPoint(startPoint);
-                    textInfo=currentRoom.getGoodFact();
+                    textInfo = currentRoom.getGoodFact();
                 } else {
-                    textInfo=currentRoom.getBadFact();
+                    textInfo = currentRoom.getBadFact();
                 }
 
                 currentRoom.getContainer().add(inventory.getInventory().get(i));

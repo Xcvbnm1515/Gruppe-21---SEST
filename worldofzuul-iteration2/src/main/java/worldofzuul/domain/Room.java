@@ -86,28 +86,28 @@ public class Room {
         String type = "";
         switch (typeOfContainer) {
             case 0:
-                type = "chemicals";
+                type = "kemikalie";
                 break;
             case 1:
-                type = "plastic";
+                type = "plastik";
                 break;
             case 2:
                 type = "metal";
                 break;
             case 3:
-                type = "glass";
+                type = "glas";
                 break;
             case 4:
-                type = "paper";
+                type = "papir";
                 break;
             case 5:
-                type = "compost";
+                type = "kompost";
                 break;
             case 6:
-                type = "clothing";
+                type = "tøj";
                 break;
             case 7:
-                type = "leftover";
+                type = "restaffald";
                 break;
         }
         return type;
@@ -117,13 +117,13 @@ public class Room {
     // Print out fact elements stretching from index 0 to 5
     public String getGoodFact() {
         addFactList();
-        return "Korrekt placeret!\nFact: " + copyFacts[0 + (int) (Math.random() * 5)];
+        return "Korrekt placeret!\n" + copyFacts[0 + (int) (Math.random() * 5)];
     }
 
     // Print out fact elements stretching from index 5 to 10
     public String getBadFact() {
         addFactList();
-        return "Forkert placeret.\nFact: " + copyFacts[5 + (int) (Math.random() * 5)];
+        return "Forkert placeret.\n" + copyFacts[5 + (int) (Math.random() * 5)];
     }
 
     // Add facts from file to array of objects

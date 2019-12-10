@@ -34,31 +34,31 @@ public class Garbage {
         String typeOfGarbage = "";
         switch (typeNum) {
             case 0:
-                typeOfGarbage = "Chemicals";
+                typeOfGarbage = "Kemikalie";
                 break;
             case 1:
-                typeOfGarbage = "Plastic";
+                typeOfGarbage = "Plastik";
                 break;
             case 2:
                 typeOfGarbage = "Metal";
                 break;
             case 3:
-                typeOfGarbage = "Glass";
+                typeOfGarbage = "Glas";
                 break;
             case 4:
-                typeOfGarbage = "Paper";
+                typeOfGarbage = "Papir";
                 break;
             case 5:
-                typeOfGarbage = "Compost";
+                typeOfGarbage = "Kompost";
                 break;
             case 6:
-                typeOfGarbage = "Clothing";
+                typeOfGarbage = "Tøj";
                 break;
             case 7:
-                typeOfGarbage = "Leftover";
+                typeOfGarbage = "Restaffald";
                 break;
             default: // control. if none of the other numbers matches it goes "Unknown" 
-                typeOfGarbage = "Unknown";
+                typeOfGarbage = "Ukendt";
 
         }
         return typeOfGarbage;
