@@ -110,18 +110,9 @@ public class Game {
         currentRoom = outside; // outside is default room at the beginning
     }
     
-    // Check if OS is mac or windows for fact combability files
+    // Check if OS is mac or another for fact combability files
     public void checkOsCombability() {
-        if(os.startsWith("Windows")) {
-            outside = new Room("Kemikalie", 0, new File("Resources/Facts/Windows/ChemicalsFacts.txt"));
-            plasticCon = new Room("Plastik", 1, new File("Resources/Facts/Windows/PlasticFacts.txt"));
-            metalCon = new Room("Metal", 2, new File("Resources/Facts/Windows/MetalFacts.txt"));
-            glassCon = new Room("Glas", 3, new File("Resources/Facts/Windows/GlassFacts.txt"));
-            paperCon = new Room("Papir", 4, new File("Resources/Facts/Windows/PaperFacts.txt"));
-            compostCon = new Room("Kompost", 5, new File("Resources/Facts/Windows/CompostFacts.txt"));
-            clothingCon = new Room("Tøj", 6, new File("Resources/Facts/Windows/ClothingFacts.txt"));
-            leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/Windows/LeftoverFacts.txt"));
-        } else if (os.startsWith("Mac")) {
+        if (os.startsWith("Mac")) {
             outside = new Room("Kemikalie", 0, new File("Resources/Facts/Mac/ChemicalsFacts.txt"));
             plasticCon = new Room("Plastik", 1, new File("Resources/Facts/Mac/PlasticFacts.txt"));
             metalCon = new Room("Metal", 2, new File("Resources/Facts/Mac/MetalFacts.txt"));
@@ -130,7 +121,16 @@ public class Game {
             compostCon = new Room("Kompost", 5, new File("Resources/Facts/Mac/CompostFacts.txt"));
             clothingCon = new Room("Tøj", 6, new File("Resources/Facts/Mac/ClothingFacts.txt"));
             leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/Mac/LeftoverFacts.txt"));
-        }  
+        } else {
+            outside = new Room("Kemikalie", 0, new File("Resources/Facts/Windows/ChemicalsFacts.txt"));
+            plasticCon = new Room("Plastik", 1, new File("Resources/Facts/Windows/PlasticFacts.txt"));
+            metalCon = new Room("Metal", 2, new File("Resources/Facts/Windows/MetalFacts.txt"));
+            glassCon = new Room("Glas", 3, new File("Resources/Facts/Windows/GlassFacts.txt"));
+            paperCon = new Room("Papir", 4, new File("Resources/Facts/Windows/PaperFacts.txt"));
+            compostCon = new Room("Kompost", 5, new File("Resources/Facts/Windows/CompostFacts.txt"));
+            clothingCon = new Room("Tøj", 6, new File("Resources/Facts/Windows/ClothingFacts.txt"));
+            leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/Windows/LeftoverFacts.txt"));
+        }
     }
 
     // Quit command method that returns boolean.
