@@ -48,7 +48,7 @@ public class Game {
         grb24 = new Garbage("PizzaBox", 7, 1, "pizzabox.png");      
         
         // Instansiate room objects.
-        outside = new Room("Kemikalie", 0, new File("Resources/Facts/ChemicalsFacts.txt"));
+        outside = new Room("Kemikalie", 0, new File("Resources/Facts/test2.csv"));
         Room plasticCon = new Room("Plastik", 1, new File("Resources/Facts/PlasticFacts.txt"));
         Room metalCon = new Room("Metal", 2, new File("Resources/Facts/MetalFacts.txt"));
         Room glassCon = new Room("Glas", 3, new File("Resources/Facts/GlassFacts.txt"));
