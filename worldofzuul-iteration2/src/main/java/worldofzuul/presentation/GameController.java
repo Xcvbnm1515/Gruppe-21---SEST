@@ -104,7 +104,7 @@ public class GameController implements Initializable {
             txtInfo.setText(Game.getTextInfo());
             txtScore.setText("Score: " + Points.getStartPoint());
         } else {
-            txtInfo.setText("Click on an item in the container, before it can be taken.");
+            txtInfo.setText("Klik på en ting i containeren, før den kan blive taget.");
         }   
     }
 
@@ -121,7 +121,7 @@ public class GameController implements Initializable {
             txtInfo.setText(Game.getTextInfo());
             txtScore.setText("Score: " + Points.getStartPoint());
         } else {
-            txtInfo.setText("Click on an item in the inventory, before it can be dropped.");
+            txtInfo.setText("Klik på en ting i inventaren, før den kan smides.");
         }     
     }
 

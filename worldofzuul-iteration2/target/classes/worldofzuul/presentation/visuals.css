@@ -11,7 +11,7 @@
 }
 
 /* Default button settings */
-#btnStart, #btnTake, #btnDrop, #btnQuit, #btnNorth, #btnEast, #btnSouth, #btnWest {
+#btnStart, #btnTake, #btnDrop, #btnQuit, #btnNorth, #btnEast, #btnSouth, #btnWest, #btnTryAgain {
     -fx-cursor: hand;
 }
 

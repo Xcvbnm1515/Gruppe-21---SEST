@@ -48,14 +48,14 @@ public class Game {
         grb24 = new Garbage("PizzaBox", 7, 1, "pizzabox.png");      
         
         // Instansiate room objects.
-        outside = new Room("Chemicals", 0, new File("Resources/Facts/ChemicalsFacts.txt"));
-        Room plasticCon = new Room("Plastic", 1, new File("Resources/Facts/PlasticFacts.txt"));
+        outside = new Room("Kemikalie", 0, new File("Resources/Facts/ChemicalsFacts.txt"));
+        Room plasticCon = new Room("Plastik", 1, new File("Resources/Facts/PlasticFacts.txt"));
         Room metalCon = new Room("Metal", 2, new File("Resources/Facts/MetalFacts.txt"));
-        Room glassCon = new Room("Glass", 3, new File("Resources/Facts/GlassFacts.txt"));
-        Room paperCon = new Room("Paper", 4, new File("Resources/Facts/PaperFacts.txt"));
-        Room compostCon = new Room("Compost", 5, new File("Resources/Facts/CompostFacts.txt"));
-        Room clothingCon = new Room("Clothing", 6, new File("Resources/Facts/ClothingFacts.txt"));
-        Room leftoverCon = new Room("Leftover", 7, new File("Resources/Facts/LeftoverFacts.txt"));
+        Room glassCon = new Room("Glas", 3, new File("Resources/Facts/GlassFacts.txt"));
+        Room paperCon = new Room("Papir", 4, new File("Resources/Facts/PaperFacts.txt"));
+        Room compostCon = new Room("Kompost", 5, new File("Resources/Facts/CompostFacts.txt"));
+        Room clothingCon = new Room("Tøj", 6, new File("Resources/Facts/ClothingFacts.txt"));
+        Room leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/LeftoverFacts.txt"));
         
         // Set exits and garbage items in rooms via setters. 
         outside.setExit("south", metalCon);
@@ -116,11 +116,11 @@ public class Game {
         // If player is at outside room, the player is able to quit, and boolean is true.
         if (currentRoom.equals(outside)) {
             hasEnded = true;
-            textInfo = "Your final number of points is: " + Points.getStartPoint()+ "!";
-            textInfo = "Your rank is " + getPlayerRank() + ".";
+            textInfo = "Dit endelige score: " + Points.getStartPoint()+ "!";
+            textInfo = "Din rank er " + getPlayerRank() + ".";
             points.writePointsToFile(Points.getUsername(), Points.getStartPoint());
         } else {
-            textInfo = "You have to be infront of the staff room, at the chemicals container, to quit.";
+            textInfo = "Du skal være foran personalevaerelset, ved kemikalie containeren, for at afslutte.";
         }
         
         return hasEnded;
@@ -148,7 +148,7 @@ public class Game {
         // If inventory size contains less than two elements, continue
         if (inventory.getInventory().size() >= 2) {
         // If container list has more than two items, your hands are full.
-            textInfo = "Your hands are full!";
+            textInfo = "Dine haender er fulde!";
             return;
         }
         
@@ -225,22 +225,22 @@ public class Game {
     public String getPlayerRank() {
         String rank = "";
         if (Points.getStartPoint() == 0) {
-            rank = "beginner. Do some research. Try again";
+            rank = "begynder. Læs op paa dit stof. Prøv igen";
         } else if (Points.getStartPoint() <= 10) {
-            rank = "amateur. You can do it better. Try again";
+            rank = "amatør. Du kan gøre det bedre. Prøv igen";
         } else if (Points.getStartPoint() <= 20) {
-            rank = "semi-professional. You are skilled. Try again";
+            rank = "semi-professionel. Du er fremragende. Prøv igen";
         } else if (Points.getStartPoint() >= 24) {
-            rank = "recyclehero. You know your stuff";
+            rank = "recyclehero. Du har mestret dit stof";
         }
         return rank;
     }
 
     // Print welcome strings
     public String printWelcome() {
-        textInfo = "Welcome to RecycleHero, " + Points.getUsername() + "!\n"
-                + "You're an employee at a recycling station and just arrived for work.\n"
-                + "Your job is to sort and collect the garbage that are littering on the ground.";
+        textInfo = "Velkommen til RecycleHero, " + Points.getUsername() + "!\n"
+                + "Du er en medarbejder ved en genbrugsstation og er lige mødt på arbejde.\n"
+                + "Dit job er at sortere og samle affald som ligger i de forskellige containere. Forsat god arbejdsdag!";
         return textInfo;
     }
     

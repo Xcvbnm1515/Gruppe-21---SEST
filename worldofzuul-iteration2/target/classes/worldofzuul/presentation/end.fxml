@@ -44,7 +44,7 @@
                   <Font size="18.0" />
                </font></Label>
             <ListView fx:id="lvScore" focusTraversable="false" maxWidth="-Infinity" pickOnBounds="false" prefHeight="134.0" prefWidth="382.0" />
-            <Button fx:id="btnTryAgain" mnemonicParsing="false" onAction="#tryAgain" text="Try again">
+            <Button fx:id="btnTryAgain" mnemonicParsing="false" onAction="#tryAgain" text="Prøv igen">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Button>

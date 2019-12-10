@@ -68,10 +68,6 @@ public class Garbage {
         return garbageName;
     }
 
-    public String getNameAdmin() {
-        return "Garbage item: " + garbageName + ". Type: " + typeOfGarbage(typeNum) + ". Points: " + points;
-    }
-    
     @Override 
     public String toString() {
         return garbageName;

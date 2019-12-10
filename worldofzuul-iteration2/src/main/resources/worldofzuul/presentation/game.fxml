@@ -86,9 +86,9 @@
                   </VBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnTake" focusTraversable="false" mnemonicParsing="false" onAction="#takeGarbage" text="Take" />
-                        <Button fx:id="btnDrop" focusTraversable="false" mnemonicParsing="false" onAction="#dropGarbage" text="Drop" />
-                        <Button fx:id="btnQuit" focusTraversable="false" mnemonicParsing="false" onAction="#quitGame" text="Quit" />
+                        <Button fx:id="btnTake" focusTraversable="false" mnemonicParsing="false" onAction="#takeGarbage" text="Tag" />
+                        <Button fx:id="btnDrop" focusTraversable="false" mnemonicParsing="false" onAction="#dropGarbage" text="Smid" />
+                        <Button fx:id="btnQuit" focusTraversable="false" mnemonicParsing="false" onAction="#quitGame" text="Afslut" />
                      </children>
                      <HBox.margin>
                         <Insets />

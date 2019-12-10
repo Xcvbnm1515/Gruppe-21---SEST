@@ -12,19 +12,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import worldofzuul.domain.Game;
 
 public class LoginController implements Initializable {
 
+    // Java FXML attributes
     @FXML private ImageView imgViewLogo;
     @FXML private TextField txtUsername;
+    @FXML private Text txtNeedUsername;
     @FXML private Button btnStart;
     @FXML private GridPane gpLoginBackground;
     
     private File file;
     private Image image;
     private Game game;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         game = new Game();
@@ -38,7 +41,13 @@ public class LoginController implements Initializable {
     // When start button is clicked, forward player to game stage
     @FXML
     private void startGame(ActionEvent event) throws IOException {
-        game.createUsername(txtUsername.getText());
-        App.setRoot("game");
+        
+        // Check if username has been entered, if not, display error message
+        if (txtUsername.getText().isEmpty()) {
+            txtNeedUsername.setVisible(true);
+        } else {
+            game.createUsername(txtUsername.getText());
+            App.setRoot("game");
+        }
     }
 }

@@ -1,6 +1,5 @@
 package worldofzuul.domain;
 
-import java.util.Set;
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,21 +54,6 @@ public class Room {
     // Get only what room the player is in
     public String getShortDescription() {
         return description + " container";
-    }
-
-    // Get what room the player is in and available directions
-    public String getLongDescription() {
-        return "The " + description + ".\n" + getExitString();
-    }
-
-    // Returns directions in a room available to the player
-    private String getExitString() {
-        String returnString = "Directions:";
-        Set<String> keys = exits.keySet();
-        for (String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
     }
 
     // Gets specific exit in a room
@@ -133,13 +117,13 @@ public class Room {
     // Print out fact elements stretching from index 0 to 5
     public String getGoodFact() {
         addFactList();
-        return "Correct placement!\nFact: " + copyFacts[0 + (int) (Math.random() * 5)];
+        return "Korrekt placeret!\nFact: " + copyFacts[0 + (int) (Math.random() * 5)];
     }
 
     // Print out fact elements stretching from index 5 to 10
     public String getBadFact() {
         addFactList();
-        return "Wrong placement.\nFact: " + copyFacts[5 + (int) (Math.random() * 5)];
+        return "Forkert placeret.\nFact: " + copyFacts[5 + (int) (Math.random() * 5)];
     }
 
     // Add facts from file to array of objects
@@ -154,7 +138,7 @@ public class Room {
             myScanner.close();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-            System.out.println("File not found.");
+            System.out.println("Filen er ikke fundet.");
         }
     }
 }

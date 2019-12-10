@@ -11,27 +11,28 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import worldofzuul.dataaccess.Points;
 import worldofzuul.domain.Game;
 
 public class EndController implements Initializable {
 
+    // Java FXML attributes
     @FXML private ImageView imgViewLogo;
     @FXML private Text txtRank;
     @FXML private ListView<String> lvScore;
     @FXML private Button btnTryAgain;
+    @FXML private GridPane gpEndBackground;
     
     private File file;
     private Image image;
     private Points points;
-    private GameController gc;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         points = new Points();
-        gc = new GameController();
-        
+
         // Set logo image
         file = new File("Resources/Images/Logo/logo.png");
         image = new Image(file.toURI().toString());
