@@ -7,10 +7,18 @@ public class Game {
 
     // Declare variables.
     private Room currentRoom; // Holds current room object.
-    private Inventory inventory; // Access and instantiate inventory instance.
-    private Room outside; // Outside room is a classvariable due to scope.
-    private Points points; // Access and instantiate points instance
+    private Inventory inventory; // Access and declare inventory instance.
+    private Room outside; // Declare outside room
+    private Room plasticCon; // Declare plastic room
+    private Room metalCon; // Declare metal room
+    private Room glassCon; // Declare glass room
+    private Room paperCon; // Declare paper room
+    private Room compostCon; // Declare compost room
+    private Room clothingCon; // Declare clothing room
+    private Room leftoverCon; // Declare leftoverCon room
+    private Points points; // Access and declare points instance
     private static String textInfo; // Used to 'hold' string of text
+    private String os = System.getProperty("os.name"); // Used to point at the os property name
 
     // Call createRooms method, and instansiate all attributes. 
     public Game() {
@@ -47,15 +55,8 @@ public class Game {
         grb23 = new Garbage("MilkCarton", 7, 1, "milkcarton.png");
         grb24 = new Garbage("PizzaBox", 7, 1, "pizzabox.png");      
         
-        // Instansiate room objects.
-        outside = new Room("Kemikalie", 0, new File("Resources/Facts/test.txt"));
-        Room plasticCon = new Room("Plastik", 1, new File("Resources/Facts/PlasticFacts.txt"));
-        Room metalCon = new Room("Metal", 2, new File("Resources/Facts/MetalFacts.txt"));
-        Room glassCon = new Room("Glas", 3, new File("Resources/Facts/GlassFacts.txt"));
-        Room paperCon = new Room("Papir", 4, new File("Resources/Facts/PaperFacts.txt"));
-        Room compostCon = new Room("Kompost", 5, new File("Resources/Facts/CompostFacts.txt"));
-        Room clothingCon = new Room("Tøj", 6, new File("Resources/Facts/ClothingFacts.txt"));
-        Room leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/LeftoverFacts.txt"));
+        // Check os and instansiate room objects
+        checkOsCombability();
         
         // Set exits and garbage items in rooms via setters. 
         outside.setExit("south", metalCon);
@@ -108,6 +109,29 @@ public class Game {
 
         currentRoom = outside; // outside is default room at the beginning
     }
+    
+    // Check if os is mac or windows for fact combability
+    public void checkOsCombability() {
+        if(os.startsWith("Windows")) {
+            outside = new Room("Kemikalie", 0, new File("Resources/Facts/Windows/ChemicalsFacts.txt"));
+            plasticCon = new Room("Plastik", 1, new File("Resources/Facts/Windows/PlasticFacts.txt"));
+            metalCon = new Room("Metal", 2, new File("Resources/Facts/Windows/MetalFacts.txt"));
+            glassCon = new Room("Glas", 3, new File("Resources/Facts/Windows/GlassFacts.txt"));
+            paperCon = new Room("Papir", 4, new File("Resources/Facts/Windows/PaperFacts.txt"));
+            compostCon = new Room("Kompost", 5, new File("Resources/Facts/Windows/CompostFacts.txt"));
+            clothingCon = new Room("Tøj", 6, new File("Resources/Facts/Windows/ClothingFacts.txt"));
+            leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/Windows/LeftoverFacts.txt"));
+        } else if (os.startsWith("Mac")) {
+            outside = new Room("Kemikalie", 0, new File("Resources/Facts/Mac/ChemicalsFacts.txt"));
+            plasticCon = new Room("Plastik", 1, new File("Resources/Facts/Mac/PlasticFacts.txt"));
+            metalCon = new Room("Metal", 2, new File("Resources/Facts/Mac/MetalFacts.txt"));
+            glassCon = new Room("Glas", 3, new File("Resources/Facts/Mac/GlassFacts.txt"));
+            paperCon = new Room("Papir", 4, new File("Resources/Facts/Mac/PaperFacts.txt"));
+            compostCon = new Room("Kompost", 5, new File("Resources/Facts/Mac/CompostFacts.txt"));
+            clothingCon = new Room("Tøj", 6, new File("Resources/Facts/Mac/ClothingFacts.txt"));
+            leftoverCon = new Room("Restaffald", 7, new File("Resources/Facts/Mac/LeftoverFacts.txt"));
+        }  
+    }
 
     // Quit command method that returns boolean.
     public Boolean quit() {
@@ -148,7 +172,7 @@ public class Game {
         // If inventory size contains less than two elements, continue
         if (inventory.getInventory().size() >= 2) {
         // If container list has more than two items, your hands are full.
-            textInfo = "Dine haender er fulde!";
+            textInfo = "Dine hænder er fulde!";
             return;
         }
         
@@ -258,5 +282,4 @@ public class Game {
     public static String getTextInfo() {
         return textInfo;
     }
-    
 }
