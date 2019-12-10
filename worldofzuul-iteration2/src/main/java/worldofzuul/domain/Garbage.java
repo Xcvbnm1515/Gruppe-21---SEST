@@ -2,18 +2,21 @@ package worldofzuul.domain;
 
 public class Garbage {
 
+    // Declare garbage variables
     private String garbageName;
     private int points;
-    private int typeNum;
+    private int typeGarbage;
     private String imageFile; 
     
+    // Garbage constructor with needed arguments
     public Garbage(String garbageName, int typeNum, int points, String imagePath) {
         this.garbageName = garbageName;
-        this.typeNum = typeNum;
+        this.typeGarbage = typeNum;
         this.points = points;
         this.imageFile = imagePath;
     }
 
+    // Get (Accesor) and set (Mutator) points
     public int getPoints() {
         return points;
     }
@@ -22,52 +25,22 @@ public class Garbage {
         this.points = points;
     }
 
-    public int getTypeNum() {
-        return typeNum;
+    // Get garbage type by int
+    public int getTypeGarbage() {
+        return typeGarbage;
     }
     
+    // Get image path
     public String getImageFile() {
         return imageFile;
     }
 
-    public String typeOfGarbage(int type) {
-        String typeOfGarbage = "";
-        switch (typeNum) {
-            case 0:
-                typeOfGarbage = "Kemikalie";
-                break;
-            case 1:
-                typeOfGarbage = "Plastik";
-                break;
-            case 2:
-                typeOfGarbage = "Metal";
-                break;
-            case 3:
-                typeOfGarbage = "Glas";
-                break;
-            case 4:
-                typeOfGarbage = "Papir";
-                break;
-            case 5:
-                typeOfGarbage = "Kompost";
-                break;
-            case 6:
-                typeOfGarbage = "Tøj";
-                break;
-            case 7:
-                typeOfGarbage = "Restaffald";
-                break;
-            default: // control. if none of the other numbers matches it goes "Unknown" 
-                typeOfGarbage = "Ukendt";
-
-        }
-        return typeOfGarbage;
-    }
-
+    // Get garbage name
     public String getGarbageName() {
         return garbageName;
     }
 
+    // Object representation to string
     @Override 
     public String toString() {
         return garbageName;

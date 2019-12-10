@@ -11,6 +11,7 @@ public class App extends Application {
 
     private static Scene scene;
 
+    // Start method that loads first initilized scene with stage window
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 800, 512);
@@ -20,6 +21,7 @@ public class App extends Application {
         stage.show();
     }
 
+    // Used to set the scene graph root to a different scene
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -32,5 +34,4 @@ public class App extends Application {
     public static void load(String[] args) {
         launch(args);
     }
-
 }

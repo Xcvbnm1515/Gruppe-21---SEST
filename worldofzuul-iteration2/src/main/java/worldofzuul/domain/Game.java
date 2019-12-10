@@ -18,7 +18,7 @@ public class Game {
     private Room leftoverCon; // Declare leftoverCon room
     private Points points; // Access and declare points instance
     private static String textInfo; // Used to 'hold' string of text
-    private String os = System.getProperty("os.name"); // Used to point at the os property name
+    private String os = System.getProperty("os.name"); // Used to point at the OS property name
 
     // Call createRooms method, and instansiate all attributes. 
     public Game() {
@@ -55,7 +55,7 @@ public class Game {
         grb23 = new Garbage("MilkCarton", 7, 1, "milkcarton.png");
         grb24 = new Garbage("PizzaBox", 7, 1, "pizzabox.png");      
         
-        // Check os and instansiate room objects
+        // Check OS combability and instansiate room objects
         checkOsCombability();
         
         // Set exits and garbage items in rooms via setters. 
@@ -110,7 +110,7 @@ public class Game {
         currentRoom = outside; // outside is default room at the beginning
     }
     
-    // Check if os is mac or windows for fact combability
+    // Check if OS is mac or windows for fact combability files
     public void checkOsCombability() {
         if(os.startsWith("Windows")) {
             outside = new Room("Kemikalie", 0, new File("Resources/Facts/Windows/ChemicalsFacts.txt"));
@@ -144,7 +144,7 @@ public class Game {
             textInfo = "Din rank er " + getPlayerRank() + ".";
             points.writePointsToFile(Points.getUsername(), Points.getStartPoint());
         } else {
-            textInfo = "Du skal være foran personalevaerelset, ved kemikalie containeren, for at afslutte.";
+            textInfo = "Du skal være foran personaleværelset, ved kemikalie containeren, for at afslutte.";
         }
         
         return hasEnded;
@@ -183,7 +183,7 @@ public class Game {
                 isGarbageItemReal = true;
 
                 // If the item you take is already correct sorted, you substract the same amount of garbage points.
-                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                if (currentRoom.getContainer().get(i).getTypeGarbage() == currentRoom.getTypeOfContainer()) {
                     int startPoint = Points.getStartPoint();
                     startPoint -= currentRoom.getContainer().get(i).getPoints();
                     Points.setStartPoint(startPoint);
@@ -213,7 +213,7 @@ public class Game {
                 * If the item you drop is correct sorted, you add  amount of garbage points to sum,
                 * and print out a good fact, if not, bad fact.
                  */
-                if (inventory.getInventory().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) {
+                if (inventory.getInventory().get(i).getTypeGarbage() == currentRoom.getTypeOfContainer()) {
                     int startPoint = Points.getStartPoint();
                     startPoint += inventory.getInventory().get(i).getPoints();
                     Points.setStartPoint(startPoint);
@@ -235,7 +235,7 @@ public class Game {
     public void checkContainerPoints() {
         if (currentRoom.hasRoomBeenChecked() == false) { // If hasn't checked, run loop and if statement.
             for (int i = 0; i < currentRoom.getContainer().size(); i++) {
-                if (currentRoom.getContainer().get(i).getTypeNum() == currentRoom.getTypeOfContainer()) { // Check if garbage type equal container type.                
+                if (currentRoom.getContainer().get(i).getTypeGarbage() == currentRoom.getTypeOfContainer()) { // Check if garbage type equal container type.                
                     int startPoint = Points.getStartPoint();
                     startPoint += currentRoom.getContainer().get(i).getPoints(); // Sum points with the points of equal items in the container.
                     Points.setStartPoint(startPoint);
@@ -249,7 +249,7 @@ public class Game {
     public String getPlayerRank() {
         String rank = "";
         if (Points.getStartPoint() == 0) {
-            rank = "begynder. Læs op paa dit stof. Prøv igen";
+            rank = "begynder. Læs op på dit stof. Prøv igen";
         } else if (Points.getStartPoint() <= 10) {
             rank = "amatør. Du kan gøre det bedre. Prøv igen";
         } else if (Points.getStartPoint() <= 20) {
